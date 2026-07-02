@@ -1106,6 +1106,28 @@ tr.frow-rec td{background:#F8FBFE}
 .es.es-sm{padding:18px 10px 22px}
 .es.es-sm .es-bird{width:150px}
 
+
+/* ============ Filter system ============ */
+.chip .fval{background:var(--chip-active);border:1px solid #BBD8F8;border-radius:99px;font-size:11.5px;padding:2px 10px;color:var(--bb-blue);font-weight:600;margin-left:2px}
+.fchip{cursor:pointer}
+.fpop{position:fixed;width:288px;background:#fff;border-radius:14px;box-shadow:var(--shadow-pop);border:1px solid var(--line-soft);z-index:130;display:none;overflow:hidden}
+.fpop.show{display:block}
+.fp-list{max-height:322px;overflow-y:auto;padding:6px 0}
+.fp-item{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:12px 18px;font-size:14px;color:var(--ink);transition:background .1s ease}
+.fp-item .ck{width:16px;height:16px;color:transparent;flex:none}
+.fp-item .ck svg{width:16px;height:16px}
+.fp-item:hover{background:var(--bg-tint)}
+.fp-item.sel{background:#F0F7FE;color:var(--bb-blue);font-weight:600}
+.fp-item.sel:hover{background:#E5F1FD}
+.fp-item.sel .ck{color:var(--bb-blue)}
+.fp-foot{border-top:1px solid var(--line-soft);padding:9px}
+.fp-clear{width:100%;text-align:center;font-size:13.5px;color:var(--ink);font-weight:500;padding:9px;border-radius:9px}
+.fp-clear:hover{background:var(--bg-tint)}
+.fp-range{padding:14px 16px 6px;display:flex;flex-direction:column;gap:12px}
+.fp-range .k{font-size:12px;font-weight:600;color:var(--bb-navy);margin-bottom:6px}
+.fp-range input{width:100%}
+.fp-apply{margin:12px 16px 14px;width:calc(100% - 32px);justify-content:center}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -1195,15 +1217,15 @@ tr.frow-rec td{background:#F8FBFE}
 
     <!-- Filter chips -->
     <div class="filter-bar" id="filterBar">
-      <button class="chip" data-filter="LOB">LOB</button>
-      <button class="chip" data-filter="Eff Date">Eff Date</button>
-      <button class="chip active" data-filter="Assigned">Assigned <span class="count">Bessie Co…</span></button>
-      <button class="chip" data-filter="Broker Office">Broker Office</button>
-      <button class="chip" data-filter="Broker Agent">Broker Agent</button>
-      <button class="chip" data-filter="Industry">Industry</button>
-      <button class="chip" data-filter="UDoc">UDoc</button>
-      <button class="chip" data-filter="Premium">Premium</button>
-      <button class="chip active" data-filter="Fronting Carrier">Fronting Carrier <span class="count">2 selected</span></button>
+      <button class="chip fchip" data-fkey="lob">LOB</button>
+      <button class="chip fchip" data-fkey="effDate">Eff Date</button>
+      <button class="chip fchip" data-fkey="assigned">Assigned</button>
+      <button class="chip fchip" data-fkey="office">Broker Office</button>
+      <button class="chip fchip" data-fkey="agent">Broker Agent</button>
+      <button class="chip fchip" data-fkey="industry">Industry</button>
+      <button class="chip fchip" data-fkey="udoc">UDoc</button>
+      <button class="chip fchip" data-fkey="premium">Premium</button>
+      <button class="chip fchip" data-fkey="carrier">Fronting Carrier</button>
       <button class="chip ghost" tabindex="-1">Status</button>
       <button class="chip-reset" id="resetBtn">Reset</button>
     </div>
@@ -1596,11 +1618,11 @@ tr.frow-rec td{background:#F8FBFE}
           </div>
 
           <div class="doc-chips">
-            <button class="chip active" data-filter="LOB">LOB <span class="cval">General Li…</span></button>
-            <button class="chip active" data-filter="Policy Period">Policy Period <span class="cval">Current</span></button>
-            <button class="chip" data-filter="Doc Type">Doc Type</button>
-            <button class="chip" data-filter="Doc Date">Doc Date</button>
-            <button class="chip active" data-filter="Uploaded by">Uploaded by <span class="cval">Matt Brooks</span></button>
+            <button class="chip fchip" data-fkey="docLob">LOB</button>
+            <button class="chip fchip" data-fkey="docPeriod">Policy Period</button>
+            <button class="chip fchip" data-fkey="docType">Doc Type</button>
+            <button class="chip fchip" data-fkey="docDate">Doc Date</button>
+            <button class="chip fchip" data-fkey="docBy">Uploaded by</button>
             <button class="chip-reset" id="docReset">Reset</button>
           </div>
 
@@ -2042,8 +2064,8 @@ tr.frow-rec td{background:#F8FBFE}
           </div>
 
           <div class="loc-filters" id="shootFilters">
-            <span class="fl">Has Shootings <span class="cval">Yes</span></span>
-            <span class="fl">Shooting Date Range <span class="cval">Last 5 years</span></span>
+            <button class="chip fchip" data-fkey="hasShoot">Has Shootings</button>
+            <button class="chip fchip" data-fkey="shootRange">Shooting Date Range</button>
             <span class="right">
               <span class="plain" id="expandAllLoc">Expand All</span>
               <button class="sortby" data-toast="Sort options would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M7 20l-3-3M7 20l3-3M17 20V4M17 4l-3 3M17 4l3 3"/></svg>Sort By</button>
@@ -2052,7 +2074,7 @@ tr.frow-rec td{background:#F8FBFE}
 
           <div class="range-note" id="rangeNote">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".4" fill="currentColor"/></svg>
-            <span>Only showing shootings <b>within the last 5 years</b>. However there may be additional shootings outside of this range.</span>
+            <span>Only showing shootings <b id="rangeNoteVal">within the last 5 years</b>. However there may be additional shootings outside of this range.</span>
             <button class="btn btn-outline btn-sm" id="clearShootFilters" style="color:var(--bb-blue);border-color:#BBD8F8">Clear Filters</button>
           </div>
 
@@ -2078,9 +2100,9 @@ tr.frow-rec td{background:#F8FBFE}
             <div class="sort-row">
               <span class="lbl">Sort</span>
               <span class="sortsel" data-toast="Sort options: Alphabetical, Date Added, Form #">Alphabetical <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-              <span class="lbl" style="margin-left:8px">Type</span><span class="cval" style="background:var(--chip-active);border:1px solid #BBD8F8;color:var(--bb-blue);border-radius:99px;padding:2.5px 11px;font-size:11.5px;font-weight:600">Exclusion</span>
-              <span class="lbl">Status</span><span style="font-size:12.5px;font-weight:600;color:var(--bb-navy)">All</span>
-              <span class="chip-reset" data-toast="Form filters reset">Reset</span>
+              <button class="chip fchip" data-fkey="formType" style="margin-left:8px">Type</button>
+              <button class="chip fchip" data-fkey="formStatus">Status</button>
+              <button class="chip-reset" id="formReset">Reset</button>
             </div>
             <table class="forms-table">
               <thead><tr><th>Status</th><th></th><th>Form #</th><th>Name</th><th>Type</th><th>Premium</th><th>Date Added</th><th>Added by</th><th style="text-align:right">Action</th></tr></thead>
@@ -2164,6 +2186,9 @@ tr.frow-rec td{background:#F8FBFE}
   </div>
 </div>
 
+
+<!-- Filter popover -->
+<div class="fpop" id="fpop"></div>
 
 <!-- Exit workspace modal -->
 <div class="modal-overlay" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
@@ -2291,6 +2316,170 @@ function emptyState(title, sub, small){
   return `<div class="es${small ? " es-sm" : ""}">${ES_BIRD}<div class="es-t">${title}</div>${sub ? `<div class="es-s">${sub}</div>` : ""}</div>`;
 }
 
+/* ---------- Filter system ---------- */
+function uniq(arr){ return [...new Set(arr)].sort(); }
+const PREM_RANGES = {"Under $1M":[0, 1e6], "$1M \u2013 $2M":[1e6, 2e6], "Over $2M":[2e6, Infinity]};
+
+const FILTERS = {
+  /* Policies list */
+  lob:      {label:"LOB", type:"multi", options:["FLAG","AE","XSPL","UXS","CUST"], sel:new Set(), refresh:"policies"},
+  effDate:  {label:"Eff Date", type:"range", from:"", to:"", refresh:"policies"},
+  assigned: {label:"Assigned", type:"multi", options:[], sel:new Set(["Bessie Cooper"]), refresh:"policies"},
+  office:   {label:"Broker Office", type:"multi", options:[], sel:new Set(), refresh:"policies"},
+  agent:    {label:"Broker Agent", type:"multi", options:[], sel:new Set(), refresh:"policies"},
+  industry: {label:"Industry", type:"multi", options:[], sel:new Set(), refresh:"policies"},
+  udoc:     {label:"UDoc", type:"multi", options:["Has UDoc","No UDoc"], sel:new Set(), refresh:"policies"},
+  premium:  {label:"Premium", type:"single", options:Object.keys(PREM_RANGES), value:null, refresh:"policies"},
+  carrier:  {label:"Fronting Carrier", type:"multi", options:["Concert","Everspan","Bridgeway Fronting Insurance","Hadron","Obsidian","Transverse","Trisura"], sel:new Set(["Concert","Hadron"]), refresh:"policies"},
+  /* Documents page */
+  docLob:   {label:"LOB", type:"multi", options:["General Liability","Cyber","Custom","Lite"], sel:new Set(["General Liability"]), refresh:"docs"},
+  docPeriod:{label:"Policy Period", type:"single", options:["Current","Prior","All"], value:"Current", showValue:true, refresh:"docs"},
+  docType:  {label:"Doc Type", type:"multi", options:["Applications","BOR","Loss Runs"], sel:new Set(), refresh:"docs"},
+  docDate:  {label:"Doc Date", type:"range", from:"", to:"", refresh:"docs"},
+  docBy:    {label:"Uploaded by", type:"multi", options:["system","Matt Brooks"], sel:new Set(["Matt Brooks"]), refresh:"docs"},
+  /* Forms tab */
+  formType:  {label:"Type", type:"multi", options:["Exclusion","Coverage Forms","Coverage Mod"], sel:new Set(), refresh:"forms"},
+  formStatus:{label:"Status", type:"single", options:["All","Recommended","Mandatory","Auto-attached","Auto","Attached"], value:"All", showValue:true, refresh:"forms"},
+  /* Workspace locations */
+  hasShoot:  {label:"Has Shootings", type:"single", options:["All","Yes","No"], value:"Yes", showValue:true, refresh:"wloc"},
+  shootRange:{label:"Shooting Date Range", type:"single", options:["Last year","Last 3 years","Last 5 years","All time"], value:"Last 5 years", showValue:true, refresh:"wloc"},
+  /* Toolbar panels (display-state filters) */
+  pnlSubjPolicy:  {label:"Policy", type:"single", options:["Flagship","Supported Excess","Custom"], value:"Flagship", showValue:true, refresh:null},
+  pnlTaskAssigned:{label:"Assigned", type:"multi", options:["Matt Brooks","Aliyah Lane","Sarah Jones"], sel:new Set(["Matt Brooks"]), refresh:null},
+  pnlTaskPolicy:  {label:"Policy", type:"single", options:["Flagship","Supported Excess","Custom"], value:"Flagship", showValue:true, refresh:null},
+  pnlHistDates:   {label:"Dates", type:"single", options:["Last 7 Days","Last 30 Days","Last 90 Days","All time"], value:"Last 30 Days", showValue:true, refresh:null},
+  pnlHistType:    {label:"Type", type:"single", options:["All","Status","Notes","Tasks"], value:"All", showValue:true, refresh:null},
+  pnlHistPerson:  {label:"Person", type:"multi", options:["Aliyah Lane","Matt Brooks","Sarah Jones"], sel:new Set(["Aliyah Lane"]), refresh:null}
+};
+FILTERS.assigned.options = uniq([...ALL_ROWS.map(r => r.uw), ...ALL_ROWS.map(r => r.agent)]);
+FILTERS.office.options = uniq(ALL_ROWS.map(r => r.office));
+FILTERS.agent.options = uniq(ALL_ROWS.map(r => r.agent));
+FILTERS.industry.options = uniq(ALL_ROWS.map(r => r.industry));
+
+function truncVal(v){ return v.length > 11 ? v.slice(0, 10) + "\u2026" : v; }
+function fmtRangeDate(iso){ const [y, m, d] = iso.split("-"); return `${Number(m)}/${Number(d)}/${y.slice(2)}`; }
+
+function filterDisplay(f){
+  if (f.type === "range"){
+    if (f.from && f.to) return `${fmtRangeDate(f.from)}\u2013${fmtRangeDate(f.to)}`;
+    if (f.from) return `From ${fmtRangeDate(f.from)}`;
+    if (f.to) return `To ${fmtRangeDate(f.to)}`;
+    return null;
+  }
+  if (f.type === "single"){
+    if (f.value == null) return null;
+    if (!f.showValue && f.value === f.options[0]) return null;
+    return truncVal(f.value);
+  }
+  if (f.sel.size === 0) return null;
+  if (f.sel.size === 1) return truncVal([...f.sel][0]);
+  return `${f.sel.size} selected`;
+}
+
+function updateChip(key){
+  const f = FILTERS[key];
+  const disp = filterDisplay(f);
+  document.querySelectorAll(`.fchip[data-fkey="${key}"]`).forEach(chip => {
+    chip.innerHTML = f.label + (disp ? ` <span class="fval">${disp}</span>` : "");
+    chip.classList.toggle("active", !!disp);
+  });
+}
+function updateAllChips(){ Object.keys(FILTERS).forEach(updateChip); }
+
+const FILTER_REFRESH = {
+  policies(){ state.page = 1; render(); },
+  docs(){ renderDocs(); },
+  forms(){ renderForms(); },
+  wloc(){ renderWlocs(); updateRangeNote(); }
+};
+function refreshFor(key){
+  const r = FILTERS[key].refresh;
+  if (r && FILTER_REFRESH[r]) FILTER_REFRESH[r]();
+}
+
+/* ---------- Popover engine ---------- */
+const FP_CHK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12.5 9.5 18 20 6.5"/></svg>';
+let fpopKey = null;
+const fpop = document.getElementById("fpop");
+
+function buildFpop(key){
+  const f = FILTERS[key];
+  if (f.type === "range"){
+    fpop.innerHTML = `
+      <div class="fp-range">
+        <div><div class="k">From</div><input type="date" class="f-input" id="fpFrom" value="${f.from}"></div>
+        <div><div class="k">To</div><input type="date" class="f-input" id="fpTo" value="${f.to}"></div>
+      </div>
+      <button class="btn btn-primary btn-sm fp-apply" id="fpApply">Apply</button>
+      <div class="fp-foot"><button class="fp-clear" id="fpClear">Clear Filters</button></div>`;
+    return;
+  }
+  const isSel = (o) => f.type === "single" ? f.value === o : f.sel.has(o);
+  fpop.innerHTML = `
+    <div class="fp-list">${f.options.map(o => `
+      <button class="fp-item${isSel(o) ? " sel" : ""}" data-opt="${o.replace(/"/g, "&quot;")}"><span class="ck">${FP_CHK}</span><span>${o}</span></button>`).join("")}
+    </div>
+    <div class="fp-foot"><button class="fp-clear" id="fpClear">Clear Filters</button></div>`;
+}
+
+function openFilterPop(key, anchor){
+  if (fpopKey === key && fpop.classList.contains("show")){ closeFilterPop(); return; }
+  fpopKey = key;
+  buildFpop(key);
+  const r = anchor.getBoundingClientRect();
+  fpop.classList.add("show");
+  const w = fpop.offsetWidth;
+  fpop.style.left = Math.max(8, Math.min(r.left, window.innerWidth - w - 12)) + "px";
+  fpop.style.top = Math.min(r.bottom + 8, window.innerHeight - 100) + "px";
+}
+function closeFilterPop(){ fpop.classList.remove("show"); fpopKey = null; }
+
+fpop.addEventListener("click", e => {
+  const f = FILTERS[fpopKey];
+  if (!f) return;
+  const item = e.target.closest(".fp-item");
+  if (item){
+    const opt = item.dataset.opt;
+    if (f.type === "single"){
+      f.value = opt;
+      updateChip(fpopKey); refreshFor(fpopKey);
+      closeFilterPop();
+    } else {
+      f.sel.has(opt) ? f.sel.delete(opt) : f.sel.add(opt);
+      item.classList.toggle("sel");
+      updateChip(fpopKey); refreshFor(fpopKey);
+    }
+    return;
+  }
+  if (e.target.closest("#fpApply")){
+    f.from = document.getElementById("fpFrom").value;
+    f.to = document.getElementById("fpTo").value;
+    updateChip(fpopKey); refreshFor(fpopKey);
+    closeFilterPop();
+    return;
+  }
+  if (e.target.closest("#fpClear")){
+    if (f.type === "range"){ f.from = ""; f.to = ""; }
+    else if (f.type === "single"){ f.value = f.options[0]; }
+    else f.sel.clear();
+    updateChip(fpopKey); refreshFor(fpopKey);
+    closeFilterPop();
+  }
+});
+document.addEventListener("click", e => {
+  const chip = e.target.closest(".fchip");
+  if (chip){
+    e.stopPropagation();
+    if (typeof closeSv === "function") closeSv();
+    if (typeof closeRowMenu === "function") closeRowMenu();
+    if (typeof closeNoteMenu === "function") closeNoteMenu();
+    openFilterPop(chip.dataset.fkey, chip);
+    return;
+  }
+  if (!e.target.closest("#fpop")) closeFilterPop();
+}, true);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeFilterPop(); });
+
 /* ---------- Rendering ---------- */
 function parseDate(s){ const [m,d,y] = s.split("/").map(Number); return new Date(2000+y, m-1, d); }
 function fmtPremium(n){ return "$" + n.toLocaleString("en-US"); }
@@ -2310,6 +2499,26 @@ function visibleRows(){
   } else if (state.savedView){
     rows = rows.filter((_, i) => i % 2 === 0); // generic demo filter for custom views
   }
+  /* chip filters */
+  if (FILTERS.lob.sel.size) rows = rows.filter(r => FILTERS.lob.sel.has(r.lob));
+  if (FILTERS.assigned.sel.size) rows = rows.filter(r => FILTERS.assigned.sel.has(r.uw) || FILTERS.assigned.sel.has(r.agent));
+  if (FILTERS.office.sel.size) rows = rows.filter(r => FILTERS.office.sel.has(r.office));
+  if (FILTERS.agent.sel.size) rows = rows.filter(r => FILTERS.agent.sel.has(r.agent));
+  if (FILTERS.industry.sel.size) rows = rows.filter(r => FILTERS.industry.sel.has(r.industry));
+  if (FILTERS.udoc.sel.size === 1) rows = rows.filter(r => FILTERS.udoc.sel.has("Has UDoc") ? r.dba : !r.dba);
+  if (FILTERS.premium.value){
+    const [lo, hi] = PREM_RANGES[FILTERS.premium.value];
+    rows = rows.filter(r => r.premium >= lo && r.premium < hi);
+  }
+  if (FILTERS.effDate.from || FILTERS.effDate.to){
+    const from = FILTERS.effDate.from ? new Date(FILTERS.effDate.from) : null;
+    const to = FILTERS.effDate.to ? new Date(FILTERS.effDate.to) : null;
+    rows = rows.filter(r => {
+      const d = parseDate(r.effDate);
+      return (!from || d >= from) && (!to || d <= to);
+    });
+  }
+  /* Fronting Carrier has no row field in this dataset; selection is display-state only */
   if (state.sortKey){
     const k = state.sortKey, dir = state.sortDir;
     rows.sort((a,b) => {
@@ -2440,16 +2649,15 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeSv(); closeRowMenu(); } });
 
-// Filter chips
-document.querySelectorAll(".chip[data-filter]").forEach(chip => chip.addEventListener("click", () => {
-  const active = chip.classList.toggle("active");
-  showToast(active ? `${chip.dataset.filter} filter panel would open here` : `${chip.dataset.filter} filter cleared`);
-}));
-
 // Reset
 $("resetBtn").addEventListener("click", () => {
-  document.querySelectorAll(".chip[data-filter]").forEach(c => c.classList.remove("active"));
-  document.querySelectorAll(".chip .count").forEach(c => c.remove());
+  ["lob","effDate","assigned","office","agent","industry","udoc","premium","carrier"].forEach(k => {
+    const f = FILTERS[k];
+    if (f.type === "range"){ f.from = ""; f.to = ""; }
+    else if (f.type === "single") f.value = null;
+    else f.sel.clear();
+    updateChip(k);
+  });
   state.search = ""; $("searchInput").value = "";
   state.savedView = null;
   svMenu.querySelectorAll(".sv-item").forEach(x => x.classList.remove("selected"));
@@ -2744,6 +2952,16 @@ function renderDocs(){
   }
   let rows = DOCS.map((d,i) => ({...d, i}));
   if (docQuery) rows = rows.filter(d => d.name.toLowerCase().includes(docQuery.toLowerCase()));
+  if (FILTERS.docType.sel.size) rows = rows.filter(d => FILTERS.docType.sel.has(d.docType));
+  if (FILTERS.docBy.sel.size) rows = rows.filter(d => FILTERS.docBy.sel.has(d.by));
+  if (FILTERS.docDate.from || FILTERS.docDate.to){
+    const from = FILTERS.docDate.from ? new Date(FILTERS.docDate.from) : null;
+    const to = FILTERS.docDate.to ? new Date(FILTERS.docDate.to) : null;
+    rows = rows.filter(d => {
+      const dd = new Date(d.date);
+      return (!from || dd >= from) && (!to || dd <= to);
+    });
+  }
   if (!rows.length){
     body.innerHTML = `<tr><td colspan="8">${emptyState("No documents match your search", "Try a different file name.")}</td></tr>`;
     return;
@@ -2787,8 +3005,13 @@ $("cbAll").addEventListener("click", () => {
   renderDocs(); syncCbAll();
 });
 $("docReset").addEventListener("click", () => {
-  document.querySelectorAll("#pageDocuments .chip").forEach(c => c.classList.remove("active"));
-  document.querySelectorAll("#pageDocuments .chip .cval").forEach(c => c.remove());
+  ["docLob","docPeriod","docType","docDate","docBy"].forEach(k => {
+    const f = FILTERS[k];
+    if (f.type === "range"){ f.from = ""; f.to = ""; }
+    else if (f.type === "single") f.value = f.options[0];
+    else f.sel.clear();
+    updateChip(k);
+  });
   docQuery = ""; $("docSearch").value = "";
   renderDocs();
   showToast("Document filters reset");
@@ -3062,7 +3285,16 @@ function wlocDetailHTML(loc){
   </div>`;
 }
 
-$("wlocList").innerHTML = WLOCS.map(loc => `
+function renderWlocs(){
+  let list = WLOCS;
+  const hs = FILTERS.hasShoot.value;
+  if (hs === "Yes") list = WLOCS.filter(l => l.shooting);
+  else if (hs === "No") list = WLOCS.filter(l => !l.shooting);
+  if (!list.length){
+    $("wlocList").innerHTML = emptyState("No locations match", "Adjust the shooting filters to see more locations.", true);
+    return;
+  }
+  $("wlocList").innerHTML = list.map(loc => `
   <div class="wloc-item${loc.open ? " open" : ""}" data-wloc="${loc.n}">
     <div class="wloc-row" role="button" tabindex="0" aria-expanded="${!!loc.open}">
       <span class="car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
@@ -3074,6 +3306,17 @@ $("wlocList").innerHTML = WLOCS.map(loc => `
     </div>
     ${wlocDetailHTML(loc)}
   </div>`).join("");
+}
+renderWlocs();
+
+function updateRangeNote(){
+  const note = document.getElementById("rangeNote");
+  if (!note) return;
+  const v = FILTERS.shootRange.value;
+  note.style.display = v === "All time" ? "none" : "flex";
+  const b = document.getElementById("rangeNoteVal");
+  if (b) b.textContent = "within the " + v.toLowerCase().replace("last", "last");
+}
 
 $("wlocList").addEventListener("click", e => {
   const bill = e.target.closest("[data-locbill]");
@@ -3104,9 +3347,11 @@ $("expandAllLoc").addEventListener("click", () => {
   $("expandAllLoc").textContent = allExpanded ? "Collapse All" : "Expand All";
 });
 $("clearShootFilters").addEventListener("click", () => {
-  $("rangeNote").remove();
-  document.querySelectorAll("#shootFilters .cval").forEach(c => c.remove());
-  showToast("Shooting filters cleared — showing all incidents");
+  FILTERS.hasShoot.value = "All";
+  FILTERS.shootRange.value = "All time";
+  updateChip("hasShoot"); updateChip("shootRange");
+  renderWlocs(); updateRangeNote();
+  showToast("Shooting filters cleared — showing all locations and incidents");
 });
 
 
@@ -3274,7 +3519,7 @@ const PANEL_DEFS = {
         <button class="seg-tab active" data-stab="all" style="flex:1">All</button>
         <button class="seg-tab" data-stab="unresolved" style="flex:1">Unresolved</button>
       </div>
-      <div class="sp-chiprow"><span class="lbl">Policy</span><span class="cval">Flagship</span></div>
+      <div class="sp-chiprow"><button class="chip fchip" data-fkey="pnlSubjPolicy">Policy</button></div>
       <div id="subjList">${items.map((it,i) => `
         <div class="subj-item${it.done ? " done" : ""}" data-si="${i}">
           <div class="subj-row">
@@ -3350,8 +3595,8 @@ const PANEL_DEFS = {
     return `
       <button class="add-task" id="addTask">Add a task</button>
       <div class="sp-chiprow">
-        <span class="lbl">Assigned</span><span class="cval">Matt Brooks</span>
-        <span class="lbl">Policy</span><span class="cval">Flagship</span>
+        <button class="chip fchip" data-fkey="pnlTaskAssigned">Assigned</button>
+        <button class="chip fchip" data-fkey="pnlTaskPolicy">Policy</button>
       </div>
       <div class="sp-sec-label">To Do</div>
       <div id="taskList">${[1,2,3].map(task).join("")}</div>`;
@@ -3403,9 +3648,9 @@ const PANEL_DEFS = {
     ];
     return `
       <div class="sp-chiprow">
-        <span class="lbl">Dates</span><span class="cval">Last 30 D…</span>
-        <span class="lbl">Type</span><span class="cval">All</span>
-        <span class="lbl">Person</span><span class="cval">Aliyah Lane</span>
+        <button class="chip fchip" data-fkey="pnlHistDates">Dates</button>
+        <button class="chip fchip" data-fkey="pnlHistType">Type</button>
+        <button class="chip fchip" data-fkey="pnlHistPerson">Person</button>
       </div>
       ${items.map(it => `
         <div class="hist-item">
@@ -3694,6 +3939,7 @@ function openPanel(id, force){
   spBody.style.padding = "";
   spBody.innerHTML = def.render();
   def.bind();
+  updateAllChips();
 }
 function closePanel(){
   activePanel = null;
@@ -3778,7 +4024,11 @@ const FSTATUS_META = {
 
 function renderForms(){
   const q = ($("formSearch").value || "").toLowerCase();
-  const rec = REC_FORMS.filter(f => !q || f.name.toLowerCase().includes(q) || f.num.toLowerCase().includes(q));
+  const tf = FILTERS.formType.sel;
+  const fs = FILTERS.formStatus.value;
+  let rec = REC_FORMS.filter(f => !q || f.name.toLowerCase().includes(q) || f.num.toLowerCase().includes(q));
+  if (tf.size) rec = rec.filter(f => tf.has(f.type));
+  if (fs && fs !== "All" && fs !== "Recommended") rec = [];
   $("recBody").innerHTML = rec.map((f,i) => `
     <tr class="frow-rec">
       <td><span class="fstatus rec">Recommended</span></td>
@@ -3789,7 +4039,11 @@ function renderForms(){
     </tr>`).join("") || `<tr><td colspan="9">${emptyState("No recommended forms match", "Try a different search or reset the filters.", true)}</td></tr>`;
   $("recCount").textContent = REC_FORMS.length;
 
-  const att = ATT_FORMS.filter(f => !q || f.name.toLowerCase().includes(q) || f.num.toLowerCase().includes(q));
+  let att = ATT_FORMS.filter(f => !q || f.name.toLowerCase().includes(q) || f.num.toLowerCase().includes(q));
+  if (tf.size && !tf.has("Exclusion")) att = [];
+  if (fs && fs !== "All"){
+    att = fs === "Recommended" ? [] : att.filter(f => FSTATUS_META[f.st].label === fs);
+  }
   $("attBody").innerHTML = att.map(f => {
     const m = FSTATUS_META[f.st];
     return `
@@ -3829,6 +4083,15 @@ document.getElementById("attBody").addEventListener("click", e => {
     showToast(`${f.num} removed from policy`);
   }
 });
+$("formReset").addEventListener("click", () => {
+  FILTERS.formType.sel.clear();
+  FILTERS.formStatus.value = "All";
+  updateChip("formType"); updateChip("formStatus");
+  $("formSearch").value = "";
+  renderForms();
+  showToast("Form filters reset");
+});
+
 document.querySelectorAll(".fgroup-head").forEach(h => h.addEventListener("click", () => {
   h.classList.toggle("collapsed");
   const tbl = h.nextElementSibling;
@@ -3978,6 +4241,7 @@ document.addEventListener("keydown", e => {
 });
 
 /* ---------- Init ---------- */
+updateAllChips();
 render();
 </script>
 </body>
