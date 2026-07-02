@@ -1064,6 +1064,39 @@ tr.frow-rec td{background:#F8FBFE}
 .sh-meta svg{width:12px;height:12px;color:var(--bb-blue);vertical-align:-2px}
 @media (max-width:1280px){.sticky-head{left:48px;right:0}}
 
+
+/* ============ Notes <-> Documents ============ */
+.nbadge{background:#FFF8EC;border:1.5px solid #F0A31A;color:#D97706;border-radius:99px;padding:1px 8px;font-size:10.5px;font-weight:700;flex:none}
+.dp-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.note-badge{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #F0A31A;color:#D97706;background:#FFF8EC;border-radius:99px;padding:5px 13px;font-size:12px;font-weight:700;cursor:pointer;transition:background .13s ease}
+.note-badge:hover{background:#FDF0D3}
+.note-badge svg{width:12px;height:12px}
+.note-badge.expanded{background:#F0A31A;color:#fff}
+.dp-toolbar .btn{margin-left:auto}
+.doc-note-link{color:var(--bb-blue);font-weight:600;cursor:pointer;white-space:nowrap}
+.doc-note-link:hover{text-decoration:underline}
+.doc-note-link svg{width:10px;height:10px;vertical-align:-1px;margin-left:3px}
+.note-card{position:relative;padding-right:30px}
+.note-kb{position:absolute;top:7px;right:4px;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#B3A25E}
+.note-kb:hover{background:rgba(0,0,0,.06)}
+.note-kb svg{width:13px;height:13px}
+.note-menu{position:absolute;top:30px;right:6px;width:160px;background:#fff;border-radius:10px;box-shadow:var(--shadow-pop);border:1px solid var(--line-soft);padding:5px 0;z-index:80}
+.note-menu button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px 13px;font-size:12.5px}
+.note-menu button:hover{background:var(--bg-tint)}
+.note-menu svg{width:13px;height:13px;color:var(--ink-mute)}
+.cn-author{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--bb-navy);margin:16px 0 20px}
+.cn-author .avatar{width:26px;height:26px;background:linear-gradient(135deg,#4A5CE8,#8B7CF6)}
+.chip.ctx{cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+
+/* ============ Exit-workspace modal ============ */
+.modal-overlay{position:fixed;inset:0;background:rgba(20,30,50,.45);z-index:120;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-card{background:#fff;border-radius:16px;padding:26px 28px;width:440px;max-width:90vw;box-shadow:var(--shadow-pop)}
+.modal-card h3{font-size:17px;font-weight:700;color:var(--bb-navy);margin-bottom:10px}
+.modal-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:22px}
+.modal-card p b{color:var(--bb-navy)}
+.modal-btns{display:flex;justify-content:flex-end;gap:10px}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -2108,6 +2141,19 @@ tr.frow-rec td{background:#F8FBFE}
   </div>
 </div>
 
+
+<!-- Exit workspace modal -->
+<div class="modal-overlay" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle">
+  <div class="modal-card">
+    <h3 id="exitModalTitle">Leave Policy Preparation?</h3>
+    <p>Your changes will be saved as a draft quote under <b>"Composite Rated Long Name 4"</b>. You can pick up where you left off from the quote selector.</p>
+    <div class="modal-btns">
+      <button class="btn btn-outline" id="exitCancel">Keep Editing</button>
+      <button class="btn btn-primary" id="exitSave">Save &amp; Exit</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <script>
 /* ============================================================
@@ -2849,16 +2895,16 @@ document.querySelectorAll(".draft-card").forEach(d => d.addEventListener("click"
   openRateWorkspace(d.dataset.quote, d.dataset.qid);
   showToast(`Opened draft: ${d.dataset.quote}`);
 }));
-$("rwBack").addEventListener("click", backToRatingPage);
-$("rwCrumbSearch").addEventListener("click", () => { screenRate.classList.remove("active"); backToList(); });
-$("rwCrumbInsured").addEventListener("click", backToRatingPage);
+$("rwBack").addEventListener("click", () => confirmLeaveWorkspace(backToRatingPage));
+$("rwCrumbSearch").addEventListener("click", () => confirmLeaveWorkspace(() => { screenRate.classList.remove("active"); backToList(); }));
+$("rwCrumbInsured").addEventListener("click", () => confirmLeaveWorkspace(backToRatingPage));
 
 /* Verify losses from workspace jumps to Loss Runs page */
-$("rwVerifyLosses").addEventListener("click", () => {
+$("rwVerifyLosses").addEventListener("click", () => confirmLeaveWorkspace(() => {
   backToRatingPage();
   switchDetailPage("pageLossRuns");
   setTimeout(() => document.getElementById("unverifiedAnchor").scrollIntoView({behavior:"smooth"}), 60);
-});
+}));
 
 /* Rating / Factor segmented */
 document.querySelectorAll("#screenRate .seg-tab[data-rview]").forEach(t => t.addEventListener("click", () => {
@@ -3045,17 +3091,88 @@ const AV = (c) => `<span class="mini-av" style="background:${c}"></span>`;
 const CB_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 19 7"/></svg>';
 
 /* ---------- Panel renderers ---------- */
+/* ---------- Shared notes store (toolbar-wide) ---------- */
+let NOTES = [
+  {text:"Here is a note someone wrote.", author:"Matt Brooks", when:"1 day ago",   docId:"d0", docLabel:"Document-name-1"},
+  {text:"Here is a note someone wrote.", author:"Matt Brooks", when:"2026/05/20",  docId:"d0", docLabel:"Document-name-1"}
+];
+const PANEL_DOCS = Array.from({length:7}, (_, i) => ({id:"d" + i, name:"Long Document name goes here_2025-01-31.pdf"}));
+let notesDocFilter = false;
+function docNoteCount(id){ return NOTES.filter(n => n.docId === id).length; }
+function shortDocLabel(name){ return name.length > 22 ? name.slice(0, 21) + "…" : name; }
+
+const EXT_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+function noteCardHTML(n, idx, showDocLink){
+  return `<div class="note-card" data-note="${idx}">
+    <button class="note-kb" data-nkb="${idx}" aria-label="Note actions"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+    ${n.text.replace(/</g, "&lt;")}
+    <div class="meta">– ${n.author} | ${n.when}${(showDocLink && n.docId) ? ` &nbsp;&nbsp;<span class="doc-note-link" data-opendoc="${n.docId}" data-docname="${n.docLabel}">${n.docLabel}${EXT_SVG}</span>` : ""}</div>
+  </div>`;
+}
+
+let openNoteMenu = null;
+function closeNoteMenu(){ if (openNoteMenu){ openNoteMenu.remove(); openNoteMenu = null; } }
+document.addEventListener("click", e => { if (!e.target.closest(".note-kb")) closeNoteMenu(); });
+
+function bindNoteCards(container, rerender){
+  container.querySelectorAll(".doc-note-link").forEach(lk => lk.addEventListener("click", () => {
+    const doc = PANEL_DOCS.find(d => d.id === lk.dataset.opendoc);
+    openPanel("documents", true);
+    openDocPreview(lk.dataset.opendoc, doc ? doc.name : lk.dataset.docname);
+  }));
+  container.querySelectorAll(".note-kb").forEach(kb => kb.addEventListener("click", e => {
+    e.stopPropagation();
+    if (openNoteMenu && openNoteMenu.dataset.for === kb.dataset.nkb){ closeNoteMenu(); return; }
+    closeNoteMenu();
+    const idx = Number(kb.dataset.nkb);
+    const n = NOTES[idx];
+    const menu = document.createElement("div");
+    menu.className = "note-menu";
+    menu.dataset.for = kb.dataset.nkb;
+    menu.innerHTML = `
+      ${n && n.docId ? `<button data-act="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Open document</button>` : ""}
+      <button data-act="del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Delete note</button>`;
+    kb.closest(".note-card").appendChild(menu);
+    openNoteMenu = menu;
+    menu.addEventListener("click", ev => {
+      const act = ev.target.closest("button")?.dataset.act;
+      if (act === "open" && n && n.docId){
+        const doc = PANEL_DOCS.find(d => d.id === n.docId);
+        openPanel("documents", true);
+        openDocPreview(n.docId, doc ? doc.name : n.docLabel);
+      }
+      if (act === "del"){
+        NOTES.splice(idx, 1);
+        rerender();
+        showToast("Note deleted");
+      }
+      closeNoteMenu();
+    });
+  }));
+}
+
+function renderNoteList(){
+  const list = document.getElementById("spNoteList");
+  if (!list) return;
+  const visible = NOTES.map((n, i) => ({n, i})).filter(({n}) => !notesDocFilter || n.docId);
+  list.innerHTML = visible.length
+    ? visible.map(({n, i}) => noteCardHTML(n, i, true)).join("")
+    : `<div style="font-size:12.5px;color:var(--ink-mute);padding:10px 2px">No notes yet.</div>`;
+  bindNoteCards(list, renderNoteList);
+}
+
 const PANEL_DEFS = {
 
   documents: { title: "Documents", render(){
-    const docs = Array.from({length:7}, () => "Long Document name goes here_2025-01-31.pdf");
     return `
       <div class="sp-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
         <input type="text" placeholder="Search Documents" id="spDocSearch"></div>
       <div class="sp-tglrow"><button class="switch" id="spViewable" role="switch" aria-checked="false"></button> Viewable Only</div>
-      <div id="spDocList">${docs.map((d,i) => `
-        <div class="sp-doc" data-doc="${i}">
-          <span class="ficon pdf">PDF</span><span class="nm">${d}</span>
+      <div id="spDocList">${PANEL_DOCS.map(d => `
+        <div class="sp-doc" data-doc="${d.id}" data-name="${d.name}">
+          <span class="ficon pdf">PDF</span><span class="nm">${d.name}</span>
+          ${docNoteCount(d.id) ? `<span class="nbadge">${docNoteCount(d.id)}</span>` : ""}
           <button class="kebab" data-toast="Document actions"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
         </div>`).join("")}</div>`;
   }, bind(){
@@ -3071,7 +3188,7 @@ const PANEL_DEFS = {
     });
     document.querySelectorAll("#spDocList .sp-doc").forEach(d => d.addEventListener("click", e => {
       if (e.target.closest(".kebab")) return;
-      openDocPreview(d.querySelector(".nm").textContent);
+      openDocPreview(d.dataset.doc, d.dataset.name);
     }));
   }},
 
@@ -3085,20 +3202,25 @@ const PANEL_DEFS = {
         <button class="btn btn-primary btn-sm" id="spNoteSave">Save Note</button>
       </div>
       <div class="sp-sec-label">All Notes</div>
-      <div class="note-attach">Attached to: <span class="chip active" style="cursor:default">Flagship</span></div>
-      <div id="spNoteList">
-        <div class="note-card">Here is a note someone wrote.<div class="meta">– Matt Brooks | 1 day ago</div></div>
-        <div class="note-card">Here is a note someone wrote.<div class="meta">– Matt Brooks | 2025-01-04</div></div>
-      </div>`;
+      <div class="sp-chiprow">
+        <span class="chip ctx${notesDocFilter ? " active" : ""}" id="noteCtxChip">Note Context${notesDocFilter ? ' <span class="cval">Documents</span>' : ""}</span>
+      </div>
+      <div id="spNoteList"></div>`;
   }, bind(){
+    renderNoteList();
     $("spNoteClear").addEventListener("click", () => $("spNoteInput").value = "");
     $("spNoteSave").addEventListener("click", () => {
       const v = $("spNoteInput").value.trim();
       if (!v){ showToast("Write a note first"); return; }
-      $("spNoteList").insertAdjacentHTML("afterbegin",
-        `<div class="note-card">${v.replace(/</g,"&lt;")}<div class="meta">– You | just now</div></div>`);
+      NOTES.unshift({text:v, author:"You", when:"just now", docId:null, docLabel:null});
       $("spNoteInput").value = "";
+      renderNoteList();
       showToast("Note saved to Flagship");
+    });
+    $("noteCtxChip").addEventListener("click", () => {
+      notesDocFilter = !notesDocFilter;
+      openPanel("notes", true);
+      showToast(notesDocFilter ? "Showing document notes only" : "Showing all notes");
     });
   }},
 
@@ -3436,7 +3558,7 @@ function renderChat(){
   $("chatSend").addEventListener("click", send);
   $("chatInput").addEventListener("keydown", e => { if (e.key === "Enter") send(); });
   spBody.querySelectorAll("[data-doc-preview]").forEach(c =>
-    c.addEventListener("click", () => { openPanel("documents"); openDocPreview(c.dataset.docPreview); }));
+    c.addEventListener("click", () => openDocPreview("dai", c.dataset.docPreview)));
 }
 
 /* ---------- Document preview (inside documents panel) ---------- */
@@ -3457,14 +3579,62 @@ const ACORD_PAGE = `
   <text x="150" y="380" font-family="DM Sans" font-size="5" fill="#93A1B5" text-anchor="middle">ACORD 125 (2016/03) — © 1993–2015 ACORD CORPORATION. All rights reserved.</text>
 </svg>`;
 
-function openDocPreview(name){
+let dpNotesExpanded = false;
+
+function openDocPreview(docId, name, expandNotes){
+  activePanel = "documents";
+  sidePanel.classList.add("open");
+  sidePanel.classList.remove("wide");
+  document.querySelectorAll(".util-rail [data-panel]").forEach(b =>
+    b.classList.toggle("active", b.dataset.panel === "documents"));
   spTitle.textContent = "Document Preview";
   spBody.style.padding = "";
+  dpNotesExpanded = !!expandNotes;
+  const docNotes = NOTES.map((n, i) => ({n, i})).filter(({n}) => n.docId === docId);
+  const count = docNotes.length;
   spBody.innerHTML = `
     <span class="sp-backlink" id="docPrevBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back to documents</span>
+    <div class="dp-toolbar">
+      ${count ? `<button class="note-badge${dpNotesExpanded ? " expanded" : ""}" id="dpBadge" aria-expanded="${dpNotesExpanded}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>${count}</button>` : ""}
+      <button class="btn btn-outline btn-sm" id="dpCreateNote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/></svg>Create note</button>
+    </div>
+    <div id="dpNotes" style="display:${dpNotesExpanded ? "block" : "none"};margin-bottom:14px">
+      ${docNotes.map(({n, i}) => noteCardHTML(n, i, false)).join("")}
+    </div>
     <div style="font-size:12px;color:var(--ink-soft);margin-bottom:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><span class="ficon pdf">PDF</span>${name}</div>
-    ${ACORD_PAGE ? `<div class="doc-preview-page">${ACORD_PAGE}</div><div class="doc-preview-page">${ACORD_PAGE}</div><div class="doc-preview-page">${ACORD_PAGE}</div>` : ""}`;
+    <div class="doc-preview-page">${ACORD_PAGE}</div>
+    <div class="doc-preview-page">${ACORD_PAGE}</div>
+    <div class="doc-preview-page">${ACORD_PAGE}</div>`;
   $("docPrevBack").addEventListener("click", () => openPanel("documents", true));
+  const badge = document.getElementById("dpBadge");
+  if (badge) badge.addEventListener("click", () => {
+    dpNotesExpanded = !dpNotesExpanded;
+    document.getElementById("dpNotes").style.display = dpNotesExpanded ? "block" : "none";
+    badge.classList.toggle("expanded", dpNotesExpanded);
+    badge.setAttribute("aria-expanded", String(dpNotesExpanded));
+  });
+  $("dpCreateNote").addEventListener("click", () => renderNoteComposer(docId, name));
+  bindNoteCards(document.getElementById("dpNotes"), () => openDocPreview(docId, name, true));
+}
+
+function renderNoteComposer(docId, name){
+  spTitle.textContent = "Create Note";
+  spBody.style.padding = "";
+  spBody.innerHTML = `
+    <textarea class="note-input" id="cnText" style="min-height:120px" placeholder="Write a note about this document…">Policy is a tier 1 business but has some losses, would be willing to write for the right price ;)</textarea>
+    <div class="cn-author"><span class="avatar"></span>Matt Brooks</div>
+    <div class="modal-btns" style="justify-content:flex-start">
+      <button class="btn btn-outline" id="cnCancel">Cancel</button>
+      <button class="btn btn-primary" id="cnSave">Save</button>
+    </div>`;
+  $("cnCancel").addEventListener("click", () => openDocPreview(docId, name));
+  $("cnSave").addEventListener("click", () => {
+    const v = $("cnText").value.trim();
+    if (!v){ showToast("Write a note first"); return; }
+    NOTES.unshift({text:v, author:"Matt Brooks", when:"just now", docId:docId, docLabel:shortDocLabel(name)});
+    showToast("Note saved — also visible in the Notes panel");
+    openDocPreview(docId, name, true);
+  });
 }
 
 /* ---------- Open/close machinery ---------- */
@@ -3727,15 +3897,43 @@ function syncStickyInsured(){
   $("shCrumbInsured").textContent = $("crumbInsured").textContent;
 }
 $("shCrumbSearch").addEventListener("click", () => {
-  if (screenRate.classList.contains("active")) screenRate.classList.remove("active");
-  backToList();
-  updateStickyHead();
+  const go = () => { if (screenRate.classList.contains("active")) screenRate.classList.remove("active"); backToList(); updateStickyHead(); };
+  if (screenRate.classList.contains("active")) confirmLeaveWorkspace(go); else go();
 });
 $("shCrumbInsured").addEventListener("click", () => {
-  if (screenRate.classList.contains("active")) backToRatingPage();
-  window.scrollTo({top:0, behavior:"smooth"});
+  const go = () => { if (screenRate.classList.contains("active")) backToRatingPage(); window.scrollTo({top:0, behavior:"smooth"}); };
+  if (screenRate.classList.contains("active")) confirmLeaveWorkspace(go); else go();
 });
 $("shTitle").addEventListener("click", () => showToast("Switch policy: Supported Excess · Custom"));
+
+
+/* ============================================================
+   Exit-workspace save guard
+   ============================================================ */
+const DRAFT_QUOTE_NAME = "Composite Rated Long Name 4";
+let pendingExit = null;
+function confirmLeaveWorkspace(next){
+  pendingExit = next;
+  $("exitModal").classList.add("show");
+}
+$("exitCancel").addEventListener("click", () => {
+  $("exitModal").classList.remove("show");
+  pendingExit = null;
+});
+$("exitSave").addEventListener("click", () => {
+  $("exitModal").classList.remove("show");
+  showToast(`Draft saved as "${DRAFT_QUOTE_NAME}"`);
+  if (pendingExit) pendingExit();
+  pendingExit = null;
+});
+$("exitModal").addEventListener("click", e => {
+  if (e.target === $("exitModal")){ $("exitModal").classList.remove("show"); pendingExit = null; }
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && $("exitModal").classList.contains("show")){
+    $("exitModal").classList.remove("show"); pendingExit = null;
+  }
+});
 
 /* ---------- Init ---------- */
 render();
