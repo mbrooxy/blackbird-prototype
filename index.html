@@ -1314,9 +1314,9 @@ tr.frow-rec td{background:#F8FBFE}
 
       <!-- Breadcrumb -->
       <div class="crumbs">
-        <span class="crumb" id="crumbInsured">McCormick's Lighting</span>
+        <span class="crumb link" id="crumbPolicies">Policy Search</span>
         <span class="crumb-sep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
-        <span class="crumb link" id="crumbPolicies">Policies</span>
+        <span class="crumb link" id="crumbInsured">McCormick's Lighting</span>
         <span class="crumb-sep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
         <span class="crumb">Flagship</span>
       </div>
@@ -2746,6 +2746,7 @@ function backToList(){
   window.scrollTo({top:0});
 }
 $("crumbPolicies").addEventListener("click", backToList);
+$("crumbInsured").addEventListener("click", () => openPanel("policyholder"));
 
 /* Generic data-toast buttons (detail screen + rails) */
 document.addEventListener("click", e => {
