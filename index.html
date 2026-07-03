@@ -2837,6 +2837,7 @@ function backToList(){
   utilRail.classList.remove("active");
   closePanel();
   document.getElementById("stickyHead").classList.remove("show");
+  setHash("policies");
   window.scrollTo({top:0});
 }
 $("crumbPolicies").addEventListener("click", backToList);
@@ -3014,6 +3015,9 @@ $("locList").addEventListener("click", e => {
 
 function switchDetailPage(pageId){
   document.querySelectorAll(".dpage").forEach(p => p.classList.toggle("active", p.id === pageId));
+  if (screenDetail.classList.contains("active")){
+    setHash(`policy/${encodeURIComponent($("crumbInsured").textContent)}/${PAGE_SLUGS[pageId] || "policy-info"}`);
+  }
   document.querySelectorAll("#subnav .sn-item[data-page]").forEach(a =>
     a.classList.toggle("active", a.dataset.page === pageId));
   document.querySelectorAll("#subnav .sn-children").forEach(c =>
@@ -3227,6 +3231,10 @@ function openRateWorkspace(quoteName, quoteId, tab){
   $("rwQuoteId").textContent = `(${quoteId})`;
   $("rwCrumbInsured").textContent = $("crumbInsured").textContent;
   screenDetail.classList.remove("active");
+  screenList.classList.remove("active");
+  screenSubs.classList.remove("active");
+  $("railPolicies").classList.add("active");
+  $("railSubs").classList.remove("active");
   screenRate.classList.add("active");
   utilRail.classList.add("active");
   window.scrollTo({top:0});
@@ -4065,6 +4073,9 @@ document.querySelectorAll("#ppChildren a[data-rwtab]").forEach(a =>
 /* Workspace tab switching */
 function switchRwTab(tab){
   document.querySelectorAll("[data-rwt]").forEach(t => t.classList.toggle("active", t.dataset.rwt === tab));
+  if (screenRate.classList.contains("active")){
+    setHash(`prep/${encodeURIComponent($("rwCrumbInsured").textContent)}/${tab}`);
+  }
   $("rwTabRating").style.display = tab === "rating" ? "" : "none";
   $("rwTabForms").style.display = tab === "forms" ? "" : "none";
   $("rwTabSubj").style.display = tab === "subjectivities" ? "" : "none";
@@ -4478,6 +4489,7 @@ function showSubs(){
   $("railSubs").classList.add("active");
   $("railPolicies").classList.remove("active");
   window.scrollTo({top:0});
+  setHash("submissions");
 }
 function showPolicies(){
   const go = () => {
@@ -4489,6 +4501,7 @@ function showPolicies(){
     $("railPolicies").classList.add("active");
     $("railSubs").classList.remove("active");
     window.scrollTo({top:0});
+    setHash("policies");
   };
   if (screenRate.classList.contains("active")) confirmLeaveWorkspace(go); else go();
 }
@@ -4499,9 +4512,59 @@ $("railPolicies").addEventListener("click", showPolicies);
 
 renderSubs();
 
+
+/* ============================================================
+   Hash router — refresh-safe URLs, back/forward, deep links
+   #/policies | #/submissions | #/policy/<insured>/<page> | #/prep/<insured>/<tab>
+   ============================================================ */
+const PAGE_SLUGS = {pagePolicyInfo:"policy-info", pageRating:"rating-quotes", pageDocuments:"documents", pageClaims:"claims", pageLossRuns:"loss-runs", pageUDocs:"udocs"};
+const SLUG_PAGES = Object.fromEntries(Object.entries(PAGE_SLUGS).map(([k, v]) => [v, k]));
+let suppressRoute = false;
+
+function setHash(h){
+  if (location.hash === "#/" + h) return;
+  suppressRoute = true;
+  location.hash = "/" + h;
+  setTimeout(() => suppressRoute = false, 0);
+}
+
+function routeShowList(){
+  [screenDetail, screenRate, screenSubs].forEach(s => s.classList.remove("active"));
+  screenList.classList.add("active");
+  utilRail.classList.remove("active");
+  closePanel();
+  stickyHead.classList.remove("show");
+  $("railPolicies").classList.add("active");
+  $("railSubs").classList.remove("active");
+}
+
+function applyRoute(){
+  const parts = location.hash.replace(/^#\/?/, "").split("/").map(decodeURIComponent).filter(Boolean);
+  if (parts[0] === "submissions"){
+    showSubs();
+  } else if (parts[0] === "policy"){
+    const name = parts[1] || "McCormick's Lighting";
+    const page = SLUG_PAGES[parts[2]] || "pagePolicyInfo";
+    screenRate.classList.remove("active");
+    screenSubs.classList.remove("active");
+    openPolicy(name);
+    if (page !== "pagePolicyInfo") switchDetailPage(page);
+  } else if (parts[0] === "prep"){
+    const name = parts[1] || "McCormick's Lighting";
+    const tab = ["rating","forms","subjectivities"].includes(parts[2]) ? parts[2] : "rating";
+    $("crumbInsured").textContent = name;
+    if (document.getElementById("shCrumbInsured")) $("shCrumbInsured").textContent = name;
+    openRateWorkspace("Composite Rated Long Name", "11374428", tab);
+  } else {
+    routeShowList();
+  }
+}
+window.addEventListener("hashchange", () => { if (!suppressRoute) applyRoute(); });
+
 /* ---------- Init ---------- */
 updateAllChips();
 render();
+applyRoute();
 </script>
 </body>
 </html>
