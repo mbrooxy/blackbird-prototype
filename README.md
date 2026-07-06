@@ -12,3 +12,5 @@ Interactive HTML prototype for the Blackbird policy platform. All data is sample
 - Sticky compact policy header on scroll
 
 Updated automatically by Claude as designs evolve. Each commit message describes the change.
+
+_Last deploy trigger: 2026-07-06T15:34:07.841981Z_
