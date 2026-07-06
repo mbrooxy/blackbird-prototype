@@ -1263,6 +1263,58 @@ tr.frow-rec td{background:#F8FBFE}
 .tp-foot .bg svg{width:11px;height:11px}
 @media (max-width:1280px){.tk-cards{grid-template-columns:repeat(2,1fr)}}
 
+
+/* ============ Endorsement mode ============ */
+:root{--endorse:#7C6BF5}
+.endorse-overlay{position:fixed;inset:0;background:var(--endorse);z-index:110;display:none;flex-direction:column}
+.endorse-overlay.active{display:flex}
+.eo-bar{display:flex;align-items:center;gap:14px;padding:12px 20px;color:#fff;flex:none}
+.eo-bar svg{width:15px;height:15px}
+.eo-name{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px}
+.eo-div{width:1px;height:18px;background:rgba(255,255,255,.4)}
+.eo-exit{color:#fff;font-size:13.5px;font-weight:500;opacity:.92}
+.eo-exit:hover{opacity:1;text-decoration:underline}
+.eo-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.eo-changes{color:#fff;font-size:13.5px;font-weight:600;text-decoration:underline;cursor:pointer}
+.eo-quote{background:#fff;color:var(--endorse);border-radius:9px;padding:8px 20px;font-weight:700;font-size:13.5px}
+.eo-quote:hover{background:#F3F0FF}
+.eo-body{flex:1;overflow-y:auto;margin:0 6px 6px;background:#fff;border-radius:8px}
+.eo-inner{padding:26px 40px 60px;max-width:1380px}
+.eo-grid{display:flex;gap:36px;align-items:flex-start;margin-top:22px}
+.eo-nav{width:170px;flex:none;position:sticky;top:20px}
+.eo-nav a{display:flex;align-items:center;gap:6px;padding:8px 12px;font-size:13px;color:var(--ink-soft);border-left:2px solid transparent;cursor:pointer;font-weight:500}
+.eo-nav a:hover{color:var(--bb-navy)}
+.eo-nav a.active{color:var(--bb-navy);font-weight:700;border-left-color:var(--bb-navy)}
+.eo-nav .chn{color:#E8830A;font-weight:700}
+.eo-content{flex:1;min-width:0;display:flex;flex-direction:column;gap:24px;max-width:1180px}
+.eo-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:24px 28px}
+.eo-card.narrow{max-width:860px}
+.eo-card .sec-head{margin-bottom:18px}
+.eo-card .sec-head .addnew{margin-left:auto;color:var(--bb-blue);font-weight:600;font-size:13px;cursor:pointer}
+.eo-card .sec-head .addnew:hover{text-decoration:underline}
+.ni-entry{border-top:1px solid var(--line-soft);padding:16px 0 6px}
+.ni-entry:first-of-type{border-top:none;padding-top:4px}
+.ni-head{display:flex;align-items:flex-start;cursor:pointer}
+.ni-head .lbl{font-size:12px;color:var(--ink-mute);margin-bottom:5px}
+.ni-head .nm{font-size:15px;font-weight:700;color:var(--bb-navy)}
+.ni-head .right{margin-left:auto;display:flex;align-items:center;gap:2px}
+.ni-head .car svg{width:13px;height:13px;transition:transform .18s ease;color:var(--ink-mute)}
+.ni-entry.open .ni-head .car svg{transform:rotate(180deg)}
+.ni-body{display:none;padding:16px 0 12px;max-width:700px}
+.ni-entry.open .ni-body{display:block}
+.f-input.changed{background:#FDF3DF;border-color:#F0DBAB}
+.revert-link{display:inline-block;font-size:12px;color:var(--bb-blue);font-weight:600;cursor:pointer;margin-top:6px}
+.revert-link:hover{text-decoration:underline}
+.eo-check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--bb-navy);margin-top:10px;cursor:pointer}
+.eo-check .cb{flex:none}
+.rc-item{border:1px solid var(--line);border-radius:11px;padding:14px 18px;margin-bottom:12px}
+.rc-item .rl{font-size:12px;color:var(--ink-mute);margin-bottom:6px}
+.rc-item .rv{font-size:13.5px}
+.rc-item .rv .old{color:var(--ink-mute);text-decoration:line-through}
+.rc-item .rv .arr{color:var(--ink-mute);margin:0 8px}
+.rc-item .rv .new{color:var(--bb-navy);font-weight:600;background:#FDF3DF;padding:1px 7px;border-radius:5px}
+.rc-item .revert-link{margin-top:8px}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -1471,7 +1523,7 @@ tr.frow-rec td{background:#F8FBFE}
         </div>
         <span class="pstatus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Bound</span>
         <div class="phead-actions">
-          <button class="btn btn-primary" data-toast="Endorse workflow would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Endorse</button>
+          <button class="btn btn-primary" data-endorse><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Endorse</button>
           <button class="kebab" data-toast="Policy actions menu"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
         </div>
       </div>
@@ -1550,7 +1602,7 @@ tr.frow-rec td{background:#F8FBFE}
               <div class="sec-actions">
                 <button class="btn btn-outline btn-sm" data-toast="Payment Terms modal would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Payment Terms</button>
                 <button class="btn btn-primary btn-sm" data-toast="Rate Policy would open the rating workspace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.2"/><circle cx="17.5" cy="17.5" r="2.2"/></svg>Rate Policy</button>
-                <button class="btn btn-primary btn-sm" data-toast="Endorse workflow would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Endorse</button>
+                <button class="btn btn-primary btn-sm" data-endorse><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Endorse</button>
               </div>
             </div>
 
@@ -2419,6 +2471,152 @@ tr.frow-rec td{background:#F8FBFE}
   </div>
 </div>
 
+
+
+<!-- ================= Endorsement mode overlay ================= -->
+<div class="endorse-overlay" id="screenEndorse">
+  <div class="eo-bar">
+    <span class="eo-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>Endorsement 0001</span>
+    <span class="eo-div"></span>
+    <button class="eo-exit" id="eoExit">Save and Exit</button>
+    <span class="eo-right">
+      <span class="eo-changes" id="eoChangesLink">0 changes</span>
+      <button class="eo-quote" data-toast="Generating endorsement quote…">Quote</button>
+    </span>
+  </div>
+  <div class="eo-body">
+    <div class="eo-inner">
+
+      <div class="phead" style="margin-bottom:4px">
+        <div class="phead-title" style="font-size:24px;color:var(--bb-navy)">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:var(--bb-blue)"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.6L5 21V4a1 1 0 0 1 1-1Z"/></svg>
+          Flagship
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;color:var(--ink-soft)"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="pmeta" style="margin-bottom:14px">
+        <span>Policy No: <b>LB1EII-005799-01</b></span><span class="dot">·</span>
+        <span>ID: <b>12345678</b></span><span class="dot">·</span>
+        <span>Eff Date: <b>2025/01/01</b></span><span class="dot">·</span>
+        <span>Exp Date: <span class="danger">2026/01/01</span></span>
+      </div>
+      <div class="phead-rule"></div>
+
+      <div class="eo-grid">
+        <nav class="eo-nav">
+          <a class="active" data-eonav="general">General Info <span class="chn" id="eoNavCount"></span></a>
+          <a data-toast="Rating/Limits endorsement view not built in this prototype yet">Rating/Limits</a>
+          <a data-toast="Forms endorsement view not built in this prototype yet">Forms</a>
+          <a data-eonav="review">Review Changes</a>
+        </nav>
+
+        <div class="eo-content">
+          <!-- General Info -->
+          <div id="eoGeneral">
+            <div class="eo-card" style="margin-bottom:24px">
+              <div class="sec-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+                <h2>Named Insured</h2>
+                <span class="addnew" id="eoAddNi">+ Add new</span>
+              </div>
+              <div id="niList">
+                <div class="ni-entry">
+                  <div class="ni-head">
+                    <div><div class="lbl">Named Insured</div><div class="nm">Mike's Lighting</div></div>
+                    <span class="right">
+                      <button class="kebab" data-toast="Named insured actions"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+                      <button class="kebab car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    </span>
+                  </div>
+                  <div class="ni-body">
+                    <div class="ph-kv"><div class="k">Named Insured</div><input class="f-input" value="Mike's Lighting"></div>
+                  </div>
+                </div>
+                <div class="ni-entry open">
+                  <div class="ni-head">
+                    <div><div class="lbl">Named Insured</div><div class="nm">Michael's Electrical Services</div></div>
+                    <span class="right">
+                      <button class="kebab" data-toast="Named insured actions"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+                      <button class="kebab car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                    </span>
+                  </div>
+                  <div class="ni-body">
+                    <div class="ph-kv"><div class="k">Named Insured</div><input class="f-input" value="Michael's Electrical Services" data-orig="Michaels Electric LLC" data-elabel="Named Insured"></div>
+                    <div class="ph-kv" style="margin-top:14px"><div class="k">Doing Business As (DBA)</div><input class="f-input" placeholder="DBA Names"></div>
+                    <span class="ph-add" data-toast="DBA field added">+ Add Another DBA Name</span>
+                    <div class="ph-kv" style="margin-top:14px;max-width:240px"><div class="k">Phone</div><input class="f-input" placeholder="(843) 555-1234"></div>
+                    <div class="ph-kv" style="margin-top:14px;max-width:320px"><div class="k">Website</div><input class="f-input" value="www.mikeslighting.com"></div>
+                    <span class="ph-add" data-toast="Website field added">+ Add a website</span>
+                    <div class="ph-kv" style="margin-top:14px"><div class="k">Address Line 1</div><input class="f-input" placeholder="1234 Sesame St"></div>
+                    <div class="ph-kv" style="margin-top:14px"><div class="k">Address Line 2</div><input class="f-input" placeholder="Apt 832"></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 110px;gap:12px;margin-top:14px">
+                      <div class="ph-kv"><div class="k">City</div><input class="f-input" placeholder="Charleston"></div>
+                      <div class="ph-kv"><div class="k">State</div><select class="f-input"><option>South Carolina</option><option>North Carolina</option></select></div>
+                      <div class="ph-kv"><div class="k">Zip</div><input class="f-input" placeholder="29407"></div>
+                    </div>
+                    <div class="ph-kv" style="margin-top:14px;max-width:240px"><div class="k">Insured's Home State</div><input class="f-input" placeholder="South Carolina" disabled></div>
+                    <label class="eo-check"><span class="cb on" id="eoSameState" role="checkbox" aria-checked="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 19 7"/></svg></span>Same as NI state above</label>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
+                      <div class="ph-kv"><div class="k">Tax ID</div><input class="f-input" placeholder="FEIN or SSN"></div>
+                      <div class="ph-kv"><div class="k">Business Type</div><select class="f-input"><option>Select Business Type</option><option>LLC</option><option>Corporation</option></select></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="eo-card narrow" style="margin-bottom:24px">
+              <div class="sec-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <h2>Broker</h2>
+              </div>
+              <div class="ph-kv"><div class="k">Broker Company</div><input class="f-input" value="Freedom Insurance, Inc" data-elabel="Broker Company"></div>
+              <div class="ph-kv" style="margin-top:14px"><div class="k">Broker Agent</div><input class="f-input" value="John Jones" data-elabel="Broker Agent"></div>
+              <div class="ph-kv" style="margin-top:14px"><div class="k">Broker Agent Email</div><input class="f-input" value="John Jones"></div>
+              <div class="ph-kv" style="margin-top:14px"><div class="k">Broker Agent Phone</div><input class="f-input" value="John Jones"></div>
+              <div class="ph-kv" style="margin-top:14px;max-width:240px"><div class="k">Broker Start Date</div><input class="f-input" value="2025-05-13"></div>
+              <div class="ph-kv" style="margin-top:14px"><div class="k">Broker Address</div><input class="f-input" placeholder="1234 Sesame St"></div>
+              <div class="ph-kv" style="margin-top:14px"><div class="k">Address Line 2</div><input class="f-input" placeholder="Apt 832"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 110px;gap:12px;margin-top:14px">
+                <div class="ph-kv"><div class="k">City</div><input class="f-input" placeholder="Charleston"></div>
+                <div class="ph-kv"><div class="k">State</div><select class="f-input"><option>South Carolina</option></select></div>
+                <div class="ph-kv"><div class="k">Zip</div><input class="f-input" placeholder="29407"></div>
+              </div>
+            </div>
+
+            <div class="eo-card">
+              <div class="sec-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".4" fill="currentColor"/></svg>
+                <h2>Predominates</h2>
+              </div>
+              <div style="display:grid;grid-template-columns:300px 300px;gap:14px">
+                <div class="ph-kv"><div class="k">Predominant Class Code</div><input class="f-input" value="5190 – Electrical Wiring within Buildings" data-orig="5191 – Electrical Fixture Installation" data-elabel="Predominant Class Code"></div>
+                <div class="ph-kv"><div class="k">Predominate Industry</div><input class="f-input" value="Electrical Contractors" data-elabel="Predominate Industry"></div>
+              </div>
+              <div style="display:grid;grid-template-columns:200px 120px 130px;gap:14px;margin-top:16px">
+                <div class="ph-kv"><div class="k">Predominant City</div><input class="f-input" value="Charleston"></div>
+                <div class="ph-kv"><div class="k">Predominant State</div><input class="f-input" value="SC"></div>
+                <div class="ph-kv"><div class="k">Predominant Zip</div><input class="f-input" value="29407"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Changes -->
+          <div id="eoReview" style="display:none">
+            <div class="eo-card narrow">
+              <div class="sec-head">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                <h2>Review Changes</h2>
+              </div>
+              <div id="eoReviewList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- Filter popover -->
 <div class="fpop" id="fpop"></div>
@@ -4708,6 +4906,12 @@ function applyRoute(){
     showSubs();
   } else if (parts[0] === "tasks"){
     showTasks();
+  } else if (parts[0] === "endorse"){
+    screenRate.classList.remove("active");
+    screenSubs.classList.remove("active");
+    screenTasks.classList.remove("active");
+    openPolicy("McCormick's Lighting");
+    openEndorse();
   } else if (parts[0] === "policy"){
     const name = parts[1] || "McCormick's Lighting";
     const page = SLUG_PAGES[parts[2]] || "pagePolicyInfo";
@@ -4725,7 +4929,14 @@ function applyRoute(){
     routeShowList();
   }
 }
-window.addEventListener("hashchange", () => { if (!suppressRoute) applyRoute(); });
+window.addEventListener("hashchange", () => {
+  if (suppressRoute) return;
+  if (screenEndorse.classList.contains("active") && !location.hash.includes("endorse")){
+    screenEndorse.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+  applyRoute();
+});
 
 
 /* ============================================================
@@ -5073,6 +5284,138 @@ $("railTasks").addEventListener("click", () => {
 
 renderTasks();
 renderTaskKpis();
+
+
+/* ============================================================
+   Endorsement mode
+   ============================================================ */
+const screenEndorse = $("screenEndorse");
+let eoAddedEntries = 0;
+
+function eoTrackedInputs(){
+  return [...screenEndorse.querySelectorAll("#eoGeneral input.f-input, #eoGeneral select.f-input")]
+    .filter(el => !el.disabled);
+}
+function eoInitTracking(){
+  eoTrackedInputs().forEach(el => {
+    if (el.dataset.eorig === undefined){
+      el.dataset.eorig = el.hasAttribute("data-orig") ? el.getAttribute("data-orig") : (el.value || "");
+      el.addEventListener("input", eoUpdate);
+      el.addEventListener("change", eoUpdate);
+    }
+  });
+}
+function eoLabel(el){
+  return el.dataset.elabel || el.closest(".ph-kv")?.querySelector(".k")?.textContent || "Field";
+}
+function eoSection(el){
+  return el.closest(".eo-card")?.querySelector("h2")?.textContent || "General Info";
+}
+function eoChanges(){
+  return eoTrackedInputs().filter(el => (el.value || "") !== el.dataset.eorig);
+}
+function eoUpdate(){
+  const changed = eoChanges();
+  eoTrackedInputs().forEach(el => {
+    const isCh = (el.value || "") !== el.dataset.eorig;
+    el.classList.toggle("changed", isCh);
+    let rv = el.closest(".ph-kv")?.querySelector(".revert-link");
+    if (isCh && !rv){
+      const span = document.createElement("span");
+      span.className = "revert-link";
+      span.textContent = "Revert change";
+      span.addEventListener("click", () => { el.value = el.dataset.eorig; eoUpdate(); });
+      el.closest(".ph-kv")?.appendChild(span);
+    } else if (!isCh && rv){
+      rv.remove();
+    }
+  });
+  const n = changed.length + eoAddedEntries;
+  $("eoChangesLink").textContent = `${n} change${n === 1 ? "" : "s"}`;
+  $("eoNavCount").textContent = n ? `(${n})` : "";
+  renderEoReview();
+}
+function renderEoReview(){
+  const list = $("eoReviewList");
+  if (!list) return;
+  const changed = eoChanges();
+  const items = changed.map(el => `
+    <div class="rc-item">
+      <div class="rl">${eoSection(el)} · ${eoLabel(el)}</div>
+      <div class="rv"><span class="old">${el.dataset.eorig || "(empty)"}</span><span class="arr">→</span><span class="new">${(el.value || "(empty)").replace(/</g, "&lt;")}</span></div>
+      <span class="revert-link" data-eorevert>Revert change</span>
+    </div>`).join("");
+  const added = eoAddedEntries ? `
+    <div class="rc-item">
+      <div class="rl">Named Insured</div>
+      <div class="rv"><span class="new">${eoAddedEntries} named insured${eoAddedEntries > 1 ? "s" : ""} added</span></div>
+    </div>` : "";
+  list.innerHTML = (items + added) || `<div style="font-size:13px;color:var(--ink-mute)">No changes yet. Edits you make in General Info will appear here.</div>`;
+  list.querySelectorAll("[data-eorevert]").forEach((rv, i) => rv.addEventListener("click", () => {
+    const el = eoChanges()[i];
+    if (el){ el.value = el.dataset.eorig; eoUpdate(); }
+  }));
+}
+
+function eoShowView(view){
+  $("eoGeneral").style.display = view === "general" ? "" : "none";
+  $("eoReview").style.display = view === "review" ? "" : "none";
+  screenEndorse.querySelectorAll("[data-eonav]").forEach(a =>
+    a.classList.toggle("active", a.dataset.eonav === view));
+}
+screenEndorse.querySelectorAll("[data-eonav]").forEach(a =>
+  a.addEventListener("click", () => eoShowView(a.dataset.eonav)));
+$("eoChangesLink").addEventListener("click", () => eoShowView("review"));
+
+function openEndorse(){
+  screenEndorse.classList.add("active");
+  document.body.style.overflow = "hidden";
+  eoInitTracking();
+  eoUpdate();
+  setHash("endorse");
+}
+function closeEndorse(){
+  const n = $("eoChangesLink").textContent;
+  screenEndorse.classList.remove("active");
+  document.body.style.overflow = "";
+  showToast(`Endorsement 0001 saved as draft (${n})`);
+  const active = document.querySelector(".dpage.active");
+  if (screenDetail.classList.contains("active") && active) switchDetailPage(active.id);
+  else setHash("policies");
+}
+$("eoExit").addEventListener("click", closeEndorse);
+document.querySelectorAll("[data-endorse]").forEach(b => b.addEventListener("click", openEndorse));
+
+/* NI entries: collapse + add new */
+$("niList").addEventListener("click", e => {
+  if (e.target.closest("[data-toast]") || e.target.closest("input") || e.target.closest("select") || e.target.closest(".ph-add") || e.target.closest(".revert-link") || e.target.closest(".cb")) return;
+  const head = e.target.closest(".ni-head");
+  if (head) head.closest(".ni-entry").classList.toggle("open");
+});
+$("eoAddNi").addEventListener("click", () => {
+  eoAddedEntries++;
+  $("niList").insertAdjacentHTML("beforeend", `
+    <div class="ni-entry open">
+      <div class="ni-head">
+        <div><div class="lbl">Named Insured</div><div class="nm">New Named Insured</div></div>
+        <span class="right">
+          <button class="kebab" data-toast="Named insured actions"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></button>
+          <button class="kebab car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </span>
+      </div>
+      <div class="ni-body">
+        <div class="ph-kv"><div class="k">Named Insured</div><input class="f-input" placeholder="Enter named insured" data-orig="" data-elabel="Named Insured (new)"></div>
+      </div>
+    </div>`);
+  eoInitTracking();
+  eoUpdate();
+  showToast("Named insured added to endorsement");
+});
+const eoSame = $("eoSameState");
+eoSame.addEventListener("click", () => {
+  const on = eoSame.classList.toggle("on");
+  eoSame.setAttribute("aria-checked", String(on));
+});
 
 /* ---------- Init ---------- */
 updateAllChips();
