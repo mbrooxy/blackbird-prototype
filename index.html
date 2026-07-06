@@ -1163,6 +1163,106 @@ tr.frow-rec td{background:#F8FBFE}
 .pol-hero-text p{font-size:15px;color:#C7DDF9}
 .pol-hero-art{height:200px;width:auto;flex:none}
 
+
+/* ============ Tasks page ============ */
+.tk-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.tk-head .ic{width:34px;height:34px;border-radius:9px;background:#E4F6EC;display:flex;align-items:center;justify-content:center;color:var(--green)}
+.tk-head .ic svg{width:18px;height:18px}
+.tk-head h1{font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--bb-navy)}
+.tk-sub{color:var(--ink-mute);margin-bottom:26px;font-size:14.5px}
+.tk-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:34px}
+.tk-card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.tk-card .th{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--bb-navy);margin-bottom:12px}
+.tk-card .th .ci{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.tk-card .th .ci svg{width:13px;height:13px}
+.tk-card .n{font-size:30px;font-weight:700;color:var(--bb-navy);letter-spacing:-.02em;margin-bottom:8px}
+.tk-card .d{font-size:12px;color:var(--ink-mute);line-height:1.45}
+.tk-controls{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.tk-controls .doc-search{flex:0 0 380px}
+.addtask{margin-left:auto;display:inline-flex}
+.addtask .main{border:1px solid #BBD8F8;color:var(--bb-blue);font-weight:600;font-size:13.5px;padding:9px 16px;border-radius:9px 0 0 9px;background:#fff;display:inline-flex;align-items:center;gap:7px}
+.addtask .main:hover{background:#F4F9FE}
+.addtask .car{border:1px solid #BBD8F8;border-left:none;border-radius:0 9px 9px 0;padding:9px 11px;color:var(--bb-blue);background:#fff}
+.addtask .car:hover{background:#F4F9FE}
+.addtask svg{width:13px;height:13px}
+.tk-chips{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.tgroup-head{display:flex;align-items:center;gap:9px;padding:18px 4px 12px;font-size:15px;font-weight:700;color:var(--bb-navy);cursor:pointer;user-select:none}
+.tgroup-head svg{width:13px;height:13px;color:var(--ink-soft);transition:transform .18s ease}
+.tgroup-head.collapsed svg{transform:rotate(-90deg)}
+.tgroup-head .cnt{background:var(--chip-active);color:var(--bb-blue);border-radius:99px;padding:1px 9px;font-size:11.5px;font-weight:700}
+.trow{display:flex;align-items:center;padding:16px 10px;border-bottom:1px solid var(--line-soft);cursor:pointer;transition:background .12s ease}
+.trow:hover{background:var(--bg-tint)}
+.trow.sub{background:#F8F8FE;padding-left:36px}
+.trow.done .t-name{text-decoration:line-through;color:var(--ink-mute)}
+.trow .car{width:22px;color:var(--ink-mute);display:flex;flex:none}
+.trow .car svg{width:12px;height:12px;transition:transform .18s ease}
+.trow.expanded .car svg{transform:rotate(90deg)}
+.trow .tcheck{width:26px;flex:none;color:#C4D2E4;display:flex}
+.trow .tcheck:hover{color:var(--green)}
+.trow.done .tcheck{color:var(--green)}
+.trow .tcheck svg{width:16px;height:16px}
+.t-name{flex:0 0 260px;font-size:13.5px;font-weight:600;color:var(--bb-navy);display:flex;align-items:center;gap:8px}
+.trow.sub .t-name{font-weight:500}
+.stbadge{display:inline-flex;align-items:center;gap:4px;background:#EEEBFC;color:#6C5CE0;border-radius:99px;padding:2px 9px;font-size:11px;font-weight:700}
+.stbadge svg{width:10px;height:10px}
+.t-assignee{flex:0 0 190px;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.t-av{width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:8.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.t-due{flex:0 0 150px;font-size:13px;color:var(--ink-soft)}
+.t-urg{flex:0 0 140px}
+.urgpill{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--red);color:var(--red);border-radius:99px;padding:3px 12px;font-size:11.5px;font-weight:700}
+.urgpill svg{width:12px;height:12px}
+.t-type{flex:0 0 140px}
+.typepill{display:inline-flex;background:#FEF0F7;color:var(--pink);border-radius:7px;padding:4px 11px;font-size:11.5px;font-weight:600}
+.t-ph{flex:0 0 160px;font-size:13px;color:var(--bb-blue);font-weight:500}
+.t-pol{flex:1;font-size:13px;color:var(--bb-blue);font-weight:600;display:flex;align-items:center;gap:5px}
+.t-pol svg{width:12px;height:12px}
+.tk-thead{display:flex;font-size:12.5px;color:var(--ink-mute);font-weight:600;padding:12px 10px;background:var(--bg-tint);border-radius:10px}
+.tk-thead .h1c{flex:0 0 308px}
+.tk-thead .h2c{flex:0 0 190px}
+.tk-thead .h3c{flex:0 0 150px}
+.tk-thead .h4c{flex:0 0 140px}
+.tk-thead .h5c{flex:0 0 140px}
+.tk-thead .h6c{flex:0 0 160px}
+.tk-thead .h7c{flex:1}
+
+/* ============ Task preview panel ============ */
+.side-panel.open.xwide{width:560px}
+.side-panel.xwide .sp-inner{width:560px}
+.tp-toplink{display:inline-flex;align-items:center;gap:6px;color:var(--bb-blue);font-weight:600;font-size:13px;cursor:pointer}
+.tp-toplink:hover{text-decoration:underline}
+.tp-toplink svg{width:12px;height:12px}
+.tp-toprow{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
+.tp-toprow .btn{margin-left:auto;flex:none}
+.tp-title{font-size:18px;font-weight:700;color:var(--bb-navy);margin-bottom:8px}
+.tp-idrow{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);margin-bottom:20px}
+.tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;margin-bottom:16px}
+.switch.red.on{background:var(--red)}
+.tp-duerow{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.pill-overdue{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border-radius:99px;padding:7px 15px;font-size:12px;font-weight:700}
+.pill-overdue svg{width:13px;height:13px}
+.tp-docchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.docchip{display:inline-flex;align-items:center;gap:7px;border:1px solid #BBD8F8;background:#F4F9FE;color:var(--bb-blue);border-radius:8px;padding:5px 11px;font-size:12px;font-weight:600}
+.docchip .x{cursor:pointer;opacity:.6;display:inline-flex}
+.docchip .x:hover{opacity:1}
+.docchip .x svg{width:10px;height:10px}
+.tp-tabs{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:22px 0 14px}
+.tp-tab{flex:1;text-align:center;padding:10px;font-size:13px;font-weight:600;color:var(--ink-mute);display:flex;align-items:center;justify-content:center;gap:7px}
+.tp-tab svg{width:13px;height:13px}
+.tp-tab.active{color:var(--bb-blue);background:#F4F9FE}
+.cmt{padding:10px 2px;border-bottom:1px solid var(--line-soft)}
+.cmt .ch{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-mute);margin-bottom:5px}
+.cmt .ch b{color:var(--bb-navy);font-size:12.5px}
+.cmt .cb2{font-size:13px;color:var(--ink)}
+.cmt-box{border:1px solid var(--line);border-radius:11px;padding:12px;margin-top:14px}
+.cmt-box textarea{width:100%;border:none;outline:none;resize:vertical;min-height:44px;font-family:inherit;font-size:13px;color:var(--ink)}
+.cmt-actions{display:flex;align-items:center;gap:10px;margin-top:8px}
+.cmt-actions .right{margin-left:auto;display:flex;gap:8px}
+.tp-foot{display:flex;align-items:center;font-size:12px;color:var(--ink-mute);padding:14px 0 4px}
+.tp-foot .badges{margin-left:auto;display:flex;gap:8px}
+.tp-foot .bg{border:1px solid var(--line);border-radius:99px;padding:3px 10px;font-size:11.5px;color:var(--ink-soft);display:inline-flex;align-items:center;gap:5px}
+.tp-foot .bg svg{width:11px;height:11px}
+@media (max-width:1280px){.tk-cards{grid-template-columns:repeat(2,1fr)}}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -1188,7 +1288,7 @@ tr.frow-rec td{background:#F8FBFE}
 </svg>
     <button class="rail-btn" id="railSubs" title="Submissions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M2 15h10"/><path d="m9 18 3-3-3-3"/></svg></button>
     <button class="rail-btn active" id="railPolicies" title="Policies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
-    <button class="rail-btn" title="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8.5 12 2.5 2.5 5-5"/></svg></button>
+    <button class="rail-btn" id="railTasks" title="Tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8.5 12 2.5 2.5 5-5"/></svg></button>
     <button class="rail-btn" title="History"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></button>
     <button class="rail-btn" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="7" r="2.4" fill="#0C73E8" stroke="currentColor"/><circle cx="15" cy="17" r="2.4" fill="#0C73E8" stroke="currentColor"/></svg></button>
     <div class="rail-spacer"></div>
@@ -2230,6 +2330,44 @@ tr.frow-rec td{background:#F8FBFE}
     </div>
   </main>
 
+  <!-- ================= Tasks screen ================= -->
+  <main class="main screen" id="screenTasks">
+    <div class="tk-head">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="m8.5 12 2.5 2.5 5-5"/></svg></span>
+      <h1>Tasks</h1>
+    </div>
+    <p class="tk-sub">Manage, track, and update tasks in one place.</p>
+
+    <div class="tk-cards" id="tkCards"></div>
+
+    <div class="tk-controls">
+      <div class="doc-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        <input type="text" id="taskSearch" placeholder="Search by Policy Name, ID, Number, or Task ID">
+      </div>
+      <div class="addtask">
+        <button class="main" id="addTaskBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Task</button>
+        <button class="car" data-toast="Task templates would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+    </div>
+
+    <div class="tk-chips">
+      <button class="chip fchip" data-fkey="tGroup">Group</button>
+      <span style="width:1px;height:24px;background:var(--line)"></span>
+      <button class="chip fchip" data-fkey="tAssignee">Assignee</button>
+      <button class="chip fchip" data-fkey="tStatus">Status</button>
+      <button class="chip" id="tOverdueChip">Overdue</button>
+      <button class="chip" id="tUrgentChip">Urgent</button>
+      <button class="chip fchip" data-fkey="tType">Type</button>
+    </div>
+
+    <div class="tk-thead">
+      <span class="h1c">Task</span><span class="h2c">Assignee</span><span class="h3c">Due Date</span>
+      <span class="h4c">Urgency</span><span class="h5c">Type</span><span class="h6c">Policyholder</span><span class="h7c">Policy</span>
+    </div>
+    <div id="taskList"></div>
+  </main>
+
   <!-- Utility side panel -->
   <aside class="side-panel" id="sidePanel" aria-label="Utility panel">
     <div class="sp-inner">
@@ -2450,7 +2588,12 @@ const FILTERS = {
   subLob:   {label:"LOB", type:"multi", options:["FLAG","XS","AHC","AE","CUST","UXS"], sel:new Set(), refresh:"subs"},
   subCreate:{label:"Create Date", type:"range", from:"", to:"", refresh:"subs"},
   subUW:    {label:"Underwriter", type:"multi", options:[], sel:new Set(), refresh:"subs"},
-  subBy:    {label:"Created by", type:"multi", options:[], sel:new Set(), refresh:"subs"}
+  subBy:    {label:"Created by", type:"multi", options:[], sel:new Set(), refresh:"subs"},
+  /* Tasks page */
+  tGroup:   {label:"Group", type:"single", options:["Priority","Due Date","Assignee"], value:"Priority", showValue:true, refresh:"tasks"},
+  tAssignee:{label:"Assignee", type:"single", options:["All","Matt Brooks","Aliyah Lane","Sarah Jones"], value:"All", showValue:true, refresh:"tasks"},
+  tStatus:  {label:"Status", type:"single", options:["Open","Completed","All"], value:"Open", showValue:true, refresh:"tasks"},
+  tType:    {label:"Type", type:"multi", options:["Subjectivity","Follow Up","Review","Document Request"], sel:new Set(["Subjectivity"]), refresh:"tasks"}
 };
 FILTERS.assigned.options = uniq([...ALL_ROWS.map(r => r.uw), ...ALL_ROWS.map(r => r.agent)]);
 FILTERS.office.options = uniq(ALL_ROWS.map(r => r.office));
@@ -2490,6 +2633,7 @@ function updateAllChips(){ Object.keys(FILTERS).forEach(updateChip); }
 const FILTER_REFRESH = {
   policies(){ state.page = 1; render(); },
   subs(){ subsState.page = 1; renderSubs(); },
+  tasks(){ renderTasks(); renderTaskKpis(); },
   docs(){ renderDocs(); },
   forms(){ renderForms(); },
   wloc(){ renderWlocs(); updateRangeNote(); }
@@ -2835,8 +2979,10 @@ function openPolicy(name){
   if (document.getElementById("shCrumbInsured")) $("shCrumbInsured").textContent = name;
   screenList.classList.remove("active");
   screenSubs.classList.remove("active");
+  screenTasks.classList.remove("active");
   $("railPolicies").classList.add("active");
   $("railSubs").classList.remove("active");
+  $("railTasks").classList.remove("active");
   screenDetail.classList.add("active");
   utilRail.classList.add("active");
   window.scrollTo({top:0});
@@ -3245,8 +3391,10 @@ function openRateWorkspace(quoteName, quoteId, tab){
   screenDetail.classList.remove("active");
   screenList.classList.remove("active");
   screenSubs.classList.remove("active");
+  screenTasks.classList.remove("active");
   $("railPolicies").classList.add("active");
   $("railSubs").classList.remove("active");
+  $("railTasks").classList.remove("active");
   screenRate.classList.add("active");
   utilRail.classList.add("active");
   window.scrollTo({top:0});
@@ -3986,7 +4134,7 @@ let dpNotesExpanded = false;
 function openDocPreview(docId, name, expandNotes){
   activePanel = "documents";
   sidePanel.classList.add("open");
-  sidePanel.classList.remove("wide");
+  sidePanel.classList.remove("wide", "xwide");
   document.querySelectorAll(".util-rail [data-panel]").forEach(b =>
     b.classList.toggle("active", b.dataset.panel === "documents"));
   spTitle.textContent = "Document Preview";
@@ -4047,6 +4195,7 @@ function openPanel(id, force){
   activePanel = id;
   spTitle.textContent = def.title;
   sidePanel.classList.add("open");
+  sidePanel.classList.remove("xwide");
   sidePanel.classList.toggle("wide", !!def.wide);
   document.querySelectorAll(".util-rail [data-panel]").forEach(b =>
     b.classList.toggle("active", b.dataset.panel === id));
@@ -4493,25 +4642,27 @@ $("subsBody").addEventListener("click", e => {
 
 /* rail navigation */
 function showSubs(){
-  [screenList, screenDetail, screenRate].forEach(s => s.classList.remove("active"));
+  [screenList, screenDetail, screenRate, screenTasks].forEach(s => s.classList.remove("active"));
   screenSubs.classList.add("active");
   utilRail.classList.remove("active");
   closePanel();
   stickyHead.classList.remove("show");
   $("railSubs").classList.add("active");
   $("railPolicies").classList.remove("active");
+  $("railTasks").classList.remove("active");
   window.scrollTo({top:0});
   setHash("submissions");
 }
 function showPolicies(){
   const go = () => {
-    [screenDetail, screenRate, screenSubs].forEach(s => s.classList.remove("active"));
+    [screenDetail, screenRate, screenSubs, screenTasks].forEach(s => s.classList.remove("active"));
     screenList.classList.add("active");
     utilRail.classList.remove("active");
     closePanel();
     stickyHead.classList.remove("show");
     $("railPolicies").classList.add("active");
     $("railSubs").classList.remove("active");
+    $("railTasks").classList.remove("active");
     window.scrollTo({top:0});
     setHash("policies");
   };
@@ -4541,19 +4692,22 @@ function setHash(h){
 }
 
 function routeShowList(){
-  [screenDetail, screenRate, screenSubs].forEach(s => s.classList.remove("active"));
+  [screenDetail, screenRate, screenSubs, screenTasks].forEach(s => s.classList.remove("active"));
   screenList.classList.add("active");
   utilRail.classList.remove("active");
   closePanel();
   stickyHead.classList.remove("show");
   $("railPolicies").classList.add("active");
   $("railSubs").classList.remove("active");
+  $("railTasks").classList.remove("active");
 }
 
 function applyRoute(){
   const parts = location.hash.replace(/^#\/?/, "").split("/").map(decodeURIComponent).filter(Boolean);
   if (parts[0] === "submissions"){
     showSubs();
+  } else if (parts[0] === "tasks"){
+    showTasks();
   } else if (parts[0] === "policy"){
     const name = parts[1] || "McCormick's Lighting";
     const page = SLUG_PAGES[parts[2]] || "pagePolicyInfo";
@@ -4572,6 +4726,353 @@ function applyRoute(){
   }
 }
 window.addEventListener("hashchange", () => { if (!suppressRoute) applyRoute(); });
+
+
+/* ============================================================
+   Tasks page
+   ============================================================ */
+const screenTasks = $("screenTasks");
+const tasksState = { search:"", overdueOnly:false, urgentOnly:false, collapsed:{} };
+
+function mkTask(id, name, group, opts = {}){
+  return Object.assign({
+    id, name, group, assignee:"Matt Brooks", due:"YYYY/MM/DD", urgent:false, done:false,
+    type:"Subjectivity", ph:"Mikes Lightin…", policy:"Flagship", subtasks:[], expanded:false,
+    sbid:"SB-00" + (1 + id % 9), createdBy:"Monica Carr", created:"2025/09/10",
+    comments:[
+      {who:"Matt B", when:"2025/09/10 @ 10:47am", text:"We need a Google Street view photo"},
+      {who:"Dom M", when:"2025/09/10 @ 10:47am", text:"This place looks haunted AF"}
+    ],
+    docs:["loss-runs-2025.pdf","loss-runs-2024-2023.pdf"]
+  }, opts);
+}
+let TASKS = [];
+let tkid = 0;
+TASKS.push(mkTask(tkid++, "Task with subtasks", "urgent", {urgent:true, subtasks:[{name:"Subtask #1"},{name:"Subtask #1"}]}));
+TASKS.push(mkTask(tkid++, "Task with subtasks", "urgent", {urgent:true, expanded:true, subtasks:[{name:"Subtask #1"},{name:"Subtask #1"}]}));
+for (let i = 0; i < 4; i++) TASKS.push(mkTask(tkid++, i === 2 ? "Task with subtasks" : "Task Name", "overdue", i === 2 ? {subtasks:[{name:"Subtask #1"},{name:"Subtask #1"}]} : {}));
+for (let i = 0; i < 4; i++) TASKS.push(mkTask(tkid++, "Task Name", "today"));
+for (let i = 0; i < 22; i++) TASKS.push(mkTask(tkid++, i === 0 ? "Task with subtasks" : "Task Name", "upcoming", i === 0 ? {urgent:true, subtasks:[{name:"Subtask #1"},{name:"Subtask #1"}]} : {}));
+
+let completedThisWeek = 24;
+const TK_GROUPS = [
+  {key:"urgent", label:"Urgent"},
+  {key:"overdue", label:"Overdue"},
+  {key:"today", label:"Due Today"},
+  {key:"upcoming", label:"Upcoming"}
+];
+
+function tkVisible(){
+  let ts = [...TASKS];
+  if (tasksState.search){
+    const q = tasksState.search.toLowerCase();
+    ts = ts.filter(t => t.name.toLowerCase().includes(q) || t.policy.toLowerCase().includes(q) || t.sbid.toLowerCase().includes(q));
+  }
+  const st = FILTERS.tStatus.value;
+  if (st === "Open") ts = ts.filter(t => !t.done);
+  else if (st === "Completed") ts = ts.filter(t => t.done);
+  if (FILTERS.tAssignee.value && FILTERS.tAssignee.value !== "All") ts = ts.filter(t => t.assignee === FILTERS.tAssignee.value);
+  if (FILTERS.tType.sel.size) ts = ts.filter(t => FILTERS.tType.sel.has(t.type));
+  if (tasksState.overdueOnly) ts = ts.filter(t => t.group === "overdue");
+  if (tasksState.urgentOnly) ts = ts.filter(t => t.urgent);
+  return ts;
+}
+
+const TCHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.5 11 15 15.5 9.5"/></svg>';
+function trowHTML(t){
+  return `
+  <div class="trow${t.expanded ? " expanded" : ""}${t.done ? " done" : ""}" data-task="${t.id}">
+    <span class="car">${t.subtasks.length ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>' : ""}</span>
+    <span class="tcheck" data-tcheck="${t.id}" role="checkbox" aria-checked="${t.done}">${TCHECK}</span>
+    <span class="t-name" style="flex:0 0 260px">${t.name}${t.subtasks.length ? `<span class="stbadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12a3 3 0 0 0 3 3h9"/><polyline points="14 14 18 18 14 22"/></svg>${t.subtasks.length}</span>` : ""}</span>
+    <span class="t-assignee"><span class="t-av">MB</span>${t.assignee}</span>
+    <span class="t-due">${t.due}</span>
+    <span class="t-urg">${t.urgent ? '<span class="urgpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.4" r=".5" fill="currentColor"/></svg>Urgent</span>' : ""}</span>
+    <span class="t-type"><span class="typepill">${t.type}</span></span>
+    <span class="t-ph" data-openph>${t.ph}</span>
+    <span class="t-pol" data-openpol><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.6L5 21V4a1 1 0 0 1 1-1Z"/></svg>${t.policy}</span>
+  </div>
+  ${t.expanded ? t.subtasks.map(s => `
+  <div class="trow sub" data-task="${t.id}">
+    <span class="car" style="color:#B3B9E8">↳</span>
+    <span class="t-name" style="flex:0 0 254px">${s.name}</span>
+    <span class="t-assignee"><span class="t-av">MB</span>${t.assignee}</span>
+    <span class="t-due">${t.due}</span>
+    <span class="t-urg"></span>
+    <span class="t-type"><span class="typepill">${t.type}</span></span>
+    <span class="t-ph">${t.ph}</span>
+    <span class="t-pol"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.6L5 21V4a1 1 0 0 1 1-1Z"/></svg>${t.policy}</span>
+  </div>`).join("") : ""}`;
+}
+
+function renderTasks(){
+  const ts = tkVisible();
+  const grouped = FILTERS.tGroup.value === "Priority";
+  let out = "";
+  if (grouped){
+    TK_GROUPS.forEach(g => {
+      const items = ts.filter(t => t.group === g.key);
+      if (!items.length) return;
+      const collapsed = !!tasksState.collapsed[g.key];
+      out += `<div class="tgroup-head${collapsed ? " collapsed" : ""}" data-tgroup="${g.key}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        ${g.label} <span class="cnt">${items.length}</span></div>`;
+      if (!collapsed) out += items.map(trowHTML).join("");
+    });
+  } else {
+    out = ts.map(trowHTML).join("");
+  }
+  $("taskList").innerHTML = out || emptyState("No tasks match your filters", "Adjust your search or clear filters to see more tasks.");
+}
+
+function renderTaskKpis(){
+  const open = TASKS.filter(t => !t.done);
+  const cards = [
+    {label:"Urgent", n:open.filter(t => t.urgent).length, c:"#E5484D", ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.4" r=".5" fill="currentColor"/></svg>', d:"Tasks marked as high priority that require immediate attention."},
+    {label:"Overdue", n:open.filter(t => t.group === "overdue").length, c:"#B4232A", ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="14" x2="15" y2="18" stroke-width="2.4"/><line x1="15" y1="14" x2="9" y2="18" stroke-width="2.4"/></svg>', d:"Tasks not completed by their assigned due date."},
+    {label:"Due Today", n:open.filter(t => t.group === "today").length, c:"#1FA35C", ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="12" cy="15" r="2.4"/></svg>', d:"Tasks scheduled for completion by the end of the current day."},
+    {label:"My Open Tasks", n:open.length, c:"#0C73E8", ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="8.5"/></svg>', d:"All active tasks currently assigned to you that are not yet completed."},
+    {label:"Completed This Week", n:completedThisWeek, c:"#8B5CF6", ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><polyline points="8.5 12.5 11 15 15.5 9.5"/></svg>', d:"Tasks you completed in the last 7 days."}
+  ];
+  $("tkCards").innerHTML = cards.map(c => `
+    <div class="tk-card">
+      <div class="th"><span class="ci" style="background:${c.c}">${c.ic}</span>${c.label}</div>
+      <div class="n">${c.n}</div>
+      <div class="d">${c.d}</div>
+    </div>`).join("");
+}
+
+$("taskSearch").addEventListener("input", e => { tasksState.search = e.target.value.trim(); renderTasks(); });
+$("tOverdueChip").addEventListener("click", () => {
+  tasksState.overdueOnly = $("tOverdueChip").classList.toggle("active");
+  renderTasks();
+});
+$("tUrgentChip").addEventListener("click", () => {
+  tasksState.urgentOnly = $("tUrgentChip").classList.toggle("active");
+  renderTasks();
+});
+let newTaskN = 0;
+$("addTaskBtn").addEventListener("click", () => {
+  newTaskN++;
+  const t = mkTask(tkid++, `New task #${newTaskN}`, "upcoming", {comments:[], docs:[]});
+  TASKS.push(t);
+  renderTasks(); renderTaskKpis();
+  openTaskPanel(t);
+  showToast("Task created");
+});
+
+$("taskList").addEventListener("click", e => {
+  const gh = e.target.closest("[data-tgroup]");
+  if (gh){
+    tasksState.collapsed[gh.dataset.tgroup] = !tasksState.collapsed[gh.dataset.tgroup];
+    renderTasks();
+    return;
+  }
+  const row = e.target.closest(".trow");
+  if (!row) return;
+  const t = TASKS.find(x => String(x.id) === row.dataset.task);
+  if (!t) return;
+  if (e.target.closest("[data-tcheck]")){
+    t.done = !t.done;
+    if (t.done) completedThisWeek++; else completedThisWeek--;
+    renderTasks(); renderTaskKpis();
+    showToast(t.done ? "Task completed" : "Task reopened");
+    return;
+  }
+  if (e.target.closest("[data-openph]")){ openPanel("policyholder"); return; }
+  if (e.target.closest("[data-openpol]")){ openPolicy("Mike's Lighting Company"); return; }
+  if (e.target.closest(".car") && t.subtasks.length && !row.classList.contains("sub")){
+    t.expanded = !t.expanded;
+    renderTasks();
+    return;
+  }
+  if (!row.classList.contains("sub")) openTaskPanel(t);
+});
+
+/* ---------- Task preview panel ---------- */
+let tpTab = "comments";
+function openTaskPanel(t){
+  activePanel = "task";
+  sidePanel.classList.add("open", "wide", "xwide");
+  document.querySelectorAll(".util-rail [data-panel]").forEach(b => b.classList.remove("active"));
+  spTitle.textContent = "Task Details";
+  spBody.style.padding = "";
+  const cmts = t.comments;
+  spBody.innerHTML = `
+    <div class="tp-toprow">
+      <span class="tp-toplink" data-tp="pol"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.6L5 21V4a1 1 0 0 1 1-1Z"/></svg>Mikes Lighting Comp…(${t.policy})</span>
+      <button class="btn btn-outline btn-sm" data-tp="complete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 19 7"/></svg>${t.done ? "Reopen Task" : "Mark Complete"}</button>
+    </div>
+    <div class="tp-title">${t.name === "Task with subtasks" || t.name === "Task Name" ? "Signed &amp; dated application" : t.name}</div>
+    <div class="tp-idrow">${t.sbid} <span class="typepill">${t.type}</span></div>
+    <div class="tp-grid">
+      <div class="ph-kv"><div class="k">Policyholder</div><select class="f-input"><option>Mike's Lighting Company</option><option>MUSC University</option></select></div>
+      <div class="ph-kv"><div class="k">Policy</div><select class="f-input"><option>Flagship</option><option>Supported Excess</option><option>Custom</option></select></div>
+      <div class="ph-kv"><div class="k">Type</div><select class="f-input" data-tp="type"><option${t.type === "Subjectivity" ? " selected" : ""}>Subjectivity</option><option${t.type === "Follow Up" ? " selected" : ""}>Follow Up</option><option${t.type === "Review" ? " selected" : ""}>Review</option><option${t.type === "Document Request" ? " selected" : ""}>Document Request</option></select></div>
+      <div></div>
+      <div class="ph-kv"><div class="k">Status</div><select class="f-input" data-tp="status"><option${!t.done ? " selected" : ""}>Open</option><option${t.done ? " selected" : ""}>Completed</option></select></div>
+      <div></div>
+      <div class="ph-kv"><div class="k">Created by</div><div class="v" style="display:flex;align-items:center;gap:7px;padding-top:4px"><span class="avatar" style="width:18px;height:18px;background:#E0479E"></span>${t.createdBy}</div></div>
+      <div class="ph-kv"><div class="k">Created date</div><div class="v" style="padding-top:6px">${t.created}</div></div>
+      <div class="ph-kv"><div class="k">Assigned to</div><select class="f-input"><option>Matt Brooks</option><option>Aliyah Lane</option><option>Sarah Jones</option></select></div>
+      <div></div>
+    </div>
+    <div class="ph-kv" style="margin-bottom:16px"><div class="k">Urgent?</div>
+      <button class="switch red${t.urgent ? " on" : ""}" data-tp="urgent" role="switch" aria-checked="${t.urgent}"></button>
+    </div>
+    <div class="ph-kv" style="margin-bottom:4px"><div class="k">Due Date</div></div>
+    <div class="tp-duerow">
+      <input type="date" class="f-input" value="2025-10-21" style="max-width:170px">
+      ${t.group === "overdue" || t.urgent ? '<span class="pill-overdue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.4" r=".5" fill="currentColor"/></svg>Overdue</span>' : ""}
+      <button class="btn btn-outline btn-sm" data-toast="Snoozed — due date pushed to tomorrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.7 21a2 2 0 0 1-3.4 0"/><path d="M18.6 13A17.9 17.9 0 0 1 18 8a6 6 0 0 0-9.3-5"/><path d="M6.3 6.3C6.1 6.8 6 7.4 6 8c0 7-3 9-3 9h14"/><line x1="2" y1="2" x2="22" y2="22"/></svg>Snooze</button>
+    </div>
+    <textarea class="note-input" placeholder="Description goes here" style="margin-bottom:20px"></textarea>
+    <div class="ph-kv"><div class="k" style="display:flex">Related Docs <span class="ph-add" style="margin-left:auto" data-toast="Upload dialog would open here">Upload</span></div>
+      <select class="f-input" data-tp="docsel"><option value="">Select a document</option>${PANEL_DOCS.slice(0,3).map((d,i) => `<option>${d.name.slice(0,28)}…(${i + 1})</option>`).join("")}</select>
+      <div class="tp-docchips" data-tp="docchips">${t.docs.map((d,i) => `<span class="docchip">${d}<span class="x" data-deldoc="${i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></span></span>`).join("")}</div>
+    </div>
+    <div class="ph-kv" style="margin-top:18px"><div class="k">Subtasks</div>
+      <span class="ph-add" data-tp="addsub" style="font-size:13px">+ Add Subtask</span>
+    </div>
+    <div class="tp-tabs">
+      <button class="tp-tab${tpTab === "comments" ? " active" : ""}" data-tptab="comments"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Comments (<span data-tp="cmtcount">${cmts.length}</span>)</button>
+      <button class="tp-tab${tpTab === "history" ? " active" : ""}" data-tptab="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>History</button>
+    </div>
+    <div data-tp="tabbody"></div>
+    <div class="tp-foot">Created ${t.created} by Matt Brooks
+      <span class="badges">
+        <span class="bg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.4 11.05 12.3 20.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 1 1 5.7 5.7l-9.2 9.1a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>${t.docs.length}</span>
+        <span class="bg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>1</span>
+      </span>
+    </div>`;
+  renderTpTab(t);
+  bindTaskPanel(t);
+}
+
+function renderTpTab(t){
+  const body = spBody.querySelector('[data-tp="tabbody"]');
+  if (tpTab === "history"){
+    body.innerHTML = `
+      <div class="hist-item"><span class="hist-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 13 10 18 19 7"/></svg></span>
+        <div style="flex:1"><div class="hist-tx">Due date updated</div><div class="hist-meta">by Matt Brooks · 2025/09/12</div></div></div>
+      <div class="hist-item"><span class="hist-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+        <div style="flex:1"><div class="hist-tx">Assigned to Matt Brooks</div><div class="hist-meta">by ${t.createdBy} · ${t.created}</div></div></div>
+      <div class="hist-item"><span class="hist-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/></svg></span>
+        <div style="flex:1"><div class="hist-tx">Task created</div><div class="hist-meta">by ${t.createdBy} · ${t.created}</div></div></div>`;
+    return;
+  }
+  body.innerHTML = `
+    <div data-tp="cmtlist">${t.comments.map(c => `
+      <div class="cmt"><div class="ch"><span class="t-av" style="background:${c.who.startsWith("Dom") ? "#8B7CF6" : "var(--green)"}">${c.who.split(" ").map(w => w[0]).join("")}</span><b>${c.who}</b> ${c.when}</div>
+      <div class="cb2">${c.text}</div></div>`).join("")}</div>
+    <div class="cmt-box">
+      <textarea placeholder="Add comment" data-tp="cmtinput"></textarea>
+      <div class="cmt-actions">
+        <button class="kebab" data-toast="Attach file to comment" style="width:26px;height:26px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M21.4 11.05 12.3 20.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 1 1 5.7 5.7l-9.2 9.1a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></button>
+        <span class="right">
+          <button class="btn btn-outline btn-sm" data-tp="cmtcancel">Cancel</button>
+          <button class="btn btn-primary btn-sm" data-tp="cmtsave">Comment</button>
+        </span>
+      </div>
+    </div>`;
+}
+
+let currentTask = null;
+spBody.addEventListener("click", e => {
+  if (activePanel !== "task" || !currentTask) return;
+  taskPanelClick(e, currentTask);
+});
+function taskPanelClick(e, t){
+  {
+    if (e.target.closest('[data-tp="pol"]')){ openPolicy("Mike's Lighting Company"); return; }
+    if (e.target.closest('[data-tp="complete"]')){
+      t.done = !t.done;
+      completedThisWeek += t.done ? 1 : -1;
+      renderTasks(); renderTaskKpis();
+      closePanel();
+      showToast(t.done ? "Task marked complete" : "Task reopened");
+      return;
+    }
+    const urg = e.target.closest('[data-tp="urgent"]');
+    if (urg){
+      t.urgent = urg.classList.toggle("on");
+      urg.setAttribute("aria-checked", String(t.urgent));
+      renderTasks(); renderTaskKpis();
+      return;
+    }
+    if (e.target.closest('[data-tp="addsub"]')){
+      t.subtasks.push({name:"Subtask #" + (t.subtasks.length + 1)});
+      renderTasks();
+      showToast("Subtask added");
+      return;
+    }
+    const del = e.target.closest("[data-deldoc]");
+    if (del){
+      t.docs.splice(Number(del.dataset.deldoc), 1);
+      openTaskPanel(t);
+      return;
+    }
+    const tab = e.target.closest("[data-tptab]");
+    if (tab){
+      tpTab = tab.dataset.tptab;
+      spBody.querySelectorAll(".tp-tab").forEach(x => x.classList.toggle("active", x.dataset.tptab === tpTab));
+      renderTpTab(t);
+      return;
+    }
+    if (e.target.closest('[data-tp="cmtsave"]')){
+      const inp = spBody.querySelector('[data-tp="cmtinput"]');
+      const v = inp.value.trim();
+      if (!v){ showToast("Write a comment first"); return; }
+      t.comments.push({who:"Matt B", when:"just now", text:v.replace(/</g, "&lt;")});
+      renderTpTab(t);
+      const cc = spBody.querySelector('[data-tp="cmtcount"]');
+      if (cc) cc.textContent = t.comments.length;
+      showToast("Comment added");
+      return;
+    }
+    if (e.target.closest('[data-tp="cmtcancel"]')){
+      const inp = spBody.querySelector('[data-tp="cmtinput"]');
+      if (inp) inp.value = "";
+    }
+  }
+}
+function bindTaskPanel(t){
+  currentTask = t;
+  const sel = spBody.querySelector('[data-tp="docsel"]');
+  if (sel) sel.addEventListener("change", () => {
+    if (!sel.value) return;
+    t.docs.push(sel.value);
+    openTaskPanel(t);
+    showToast("Document linked to task");
+  });
+  const stSel = spBody.querySelector('[data-tp="status"]');
+  if (stSel) stSel.addEventListener("change", () => {
+    const done = stSel.value === "Completed";
+    if (done !== t.done){ t.done = done; completedThisWeek += done ? 1 : -1; renderTasks(); renderTaskKpis(); }
+  });
+  const tySel = spBody.querySelector('[data-tp="type"]');
+  if (tySel) tySel.addEventListener("change", () => { t.type = tySel.value; renderTasks(); });
+}
+
+/* ---------- Tasks navigation ---------- */
+function showTasks(){
+  [screenList, screenDetail, screenRate, screenSubs].forEach(s => s.classList.remove("active"));
+  screenTasks.classList.add("active");
+  utilRail.classList.remove("active");
+  closePanel();
+  stickyHead.classList.remove("show");
+  $("railTasks").classList.add("active");
+  $("railPolicies").classList.remove("active");
+  $("railSubs").classList.remove("active");
+  window.scrollTo({top:0});
+  setHash("tasks");
+}
+$("railTasks").addEventListener("click", () => {
+  if (screenRate.classList.contains("active")) confirmLeaveWorkspace(showTasks); else showTasks();
+});
+
+renderTasks();
+renderTaskKpis();
 
 /* ---------- Init ---------- */
 updateAllChips();
