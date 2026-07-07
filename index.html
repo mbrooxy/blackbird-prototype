@@ -1569,6 +1569,70 @@ body.endorse-mode #stickyHead{display:none}
 .rc-item .rv .new{color:var(--bb-navy);font-weight:600;background:#FDF3DF;padding:1px 7px;border-radius:5px}
 .rc-item .revert-link{margin-top:8px}
 
+
+/* ============ Floating quote-for-premiums widget ============ */
+.qp{position:fixed;right:80px;bottom:22px;z-index:95;display:none;transition:right .25s ease}
+body.qp-visible .qp{display:block}
+.qp-pill{display:flex;align-items:stretch;border-radius:99px;overflow:hidden;box-shadow:0 8px 24px rgba(12,60,150,.35);cursor:pointer}
+.qp-pill .coin{background:#1A54C4;display:flex;align-items:center;justify-content:center;padding:0 20px;color:#fff}
+.qp-pill .coin svg{width:26px;height:26px}
+.qp-pill .ptxt{background:#2367E8;color:#fff;padding:12px 26px 12px 20px;text-align:center}
+.qp-pill .ptxt .l{display:block;font-size:12.5px;font-weight:600;text-decoration:underline;margin-bottom:2px}
+.qp-pill .ptxt b{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.qp-panel{display:none;width:560px;max-height:calc(100vh - 100px);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(10,30,70,.35);flex-direction:column}
+.qp.expanded .qp-panel{display:flex}
+.qp.expanded .qp-pill{display:none}
+.qp-head{background:#1A47AE;color:#fff;display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:13.5px;font-weight:700;flex:none}
+.qp-head svg{width:17px;height:17px}
+.qp-head .min{margin-left:auto;color:#fff;font-size:16px;font-weight:800;padding:0 6px;cursor:pointer;opacity:.85}
+.qp-head .min:hover{opacity:1}
+.qp-hero{background:#2367E8;color:#fff;text-align:center;padding:16px 20px 18px;flex:none}
+.qp-hero .l{font-size:13px;font-weight:600;text-decoration:underline;margin-bottom:4px}
+.qp-hero .amt{font-size:30px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.qp-hero .sub{font-size:11.5px;opacity:.85}
+.qp-body{overflow-y:auto;padding:18px 20px 60px;position:relative}
+.qp-sec{display:flex;align-items:center;font-size:13.5px;font-weight:700;color:var(--bb-navy);margin:6px 0 12px;cursor:pointer}
+.qp-sec svg{width:13px;height:13px;margin-left:auto;color:var(--ink-mute);transition:transform .18s ease}
+.qp-sec.closed svg{transform:rotate(-90deg)}
+.qp-tech{background:#EFF6FE;border-radius:10px;text-align:center;padding:12px;font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.qp-tech b{color:var(--bb-navy)}
+.qp-tech .min{font-size:12px;font-style:italic;color:var(--ink-mute);margin-top:3px}
+.qp-mod{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.qp-mod .row{display:flex;gap:14px;margin-bottom:10px}
+.qp-mod .f-label{font-size:11.5px}
+.qp-mod .modin{display:flex;align-items:center;gap:8px}
+.qp-mod .modin input{width:64px}
+.qp-mod .modin .eq{font-size:13px;font-weight:600;color:var(--bb-navy);white-space:nowrap}
+.qp-mod textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-family:inherit;font-size:12.5px;color:var(--ink);resize:vertical;min-height:52px}
+.qp-mod .req{color:var(--red)}
+.qp-tglrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--bb-navy);margin:16px 0 10px}
+.qp-table{width:100%;border-radius:10px;overflow:hidden;margin-bottom:18px}
+.qp-table .thr,.qp-table .tr{display:flex;justify-content:space-between;padding:8px 14px;font-size:12.5px}
+.qp-table .thr{color:var(--ink-mute);font-weight:600}
+.qp-table .tr{color:var(--ink-soft)}
+.qp-table .tr:nth-child(even){background:#F4F8FD}
+.qp-prem{font-size:13px;margin-bottom:16px}
+.qp-prem .pr{display:flex;align-items:center;justify-content:space-between;padding:7px 0;color:var(--ink)}
+.qp-prem .pr b{color:var(--bb-navy);font-weight:600}
+.qp-prem .pr.total{font-weight:700;color:var(--bb-navy);border-top:1px solid var(--line);margin-top:4px;padding-top:11px}
+.qp-prem .pr.total b{font-weight:800}
+.qp-prem .pr .lk{color:var(--bb-blue);font-weight:600;cursor:pointer}
+.qp-prem .pr input{max-width:110px;text-align:right}
+.qp-prem .rate{display:flex;align-items:center;gap:8px}
+.qp-prem .rate input{width:58px;text-align:right}
+.qp-prem .rate .per{font-size:12px;color:var(--ink-mute)}
+.qp-grand{background:#2367E8;color:#fff;border-radius:11px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:14px;font-weight:700;margin-bottom:18px}
+.qp-grand b{font-size:16px;font-weight:800}
+.qp-acc{border:1px solid var(--line);border-radius:11px;margin-bottom:10px;overflow:hidden}
+.qp-acc .ah{display:flex;align-items:center;padding:13px 16px;font-size:13px;font-weight:600;color:var(--bb-navy);cursor:pointer}
+.qp-acc .ah svg{width:13px;height:13px;margin-left:auto;color:var(--ink-mute);transition:transform .18s ease}
+.qp-acc.open .ah svg{transform:rotate(180deg)}
+.qp-acc .ab{display:none;padding:0 16px 14px}
+.qp-acc.open .ab{display:block}
+.qp-acc .ab .tr{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);padding:6px 0}
+.qp-fab{position:absolute;right:16px;bottom:14px;width:44px;height:44px;border-radius:50%;background:#2367E8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(12,60,150,.4);position:sticky;left:100%;bottom:8px;margin-top:8px}
+.qp-fab svg{width:18px;height:18px}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -2885,6 +2949,85 @@ body.endorse-mode #stickyHead{display:none}
   <span class="eo-div"></span>
   <button class="eo-exit" id="eoExit">Save and Exit</button>
   <button class="eo-review-btn" id="eoReviewBtn">Review Changes (0)</button>
+</div>
+
+
+<!-- Floating quote-for-premiums widget (Rating page) -->
+<div class="qp" id="qpWrap">
+  <button class="qp-pill" id="qpPill" aria-expanded="false">
+    <span class="coin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.4-.8-1.4-1.4-2.5-1.4-1.5 0-2.7 1-2.7 2.1s1 1.7 2.7 2.1c1.7.4 2.7 1 2.7 2.1s-1.2 2.1-2.7 2.1c-1.1 0-2.1-.6-2.5-1.4"/><line x1="12" y1="6" x2="12" y2="7.8"/><line x1="12" y1="16.2" x2="12" y2="18"/></svg></span>
+    <span class="ptxt"><span class="l">Final Premium</span><b>$500,000</b></span>
+  </button>
+  <div class="qp-panel">
+    <div class="qp-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.4-.8-1.4-1.4-2.5-1.4-1.5 0-2.7 1-2.7 2.1s1 1.7 2.7 2.1c1.7.4 2.7 1 2.7 2.1s-1.2 2.1-2.7 2.1c-1.1 0-2.1-.6-2.5-1.4"/><line x1="12" y1="6" x2="12" y2="7.8"/><line x1="12" y1="16.2" x2="12" y2="18"/></svg>Quote for Premiums<span class="min" id="qpMin" role="button" aria-label="Minimize">—</span></div>
+    <div class="qp-hero">
+      <div class="l">Final Premium</div>
+      <div class="amt">$500,000</div>
+      <div class="sub">(Total Incl Fees &amp; TRIA: $365,123)</div>
+    </div>
+    <div class="qp-body">
+      <div class="qp-sec" id="qpPricingHead">Pricing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      <div id="qpPricing">
+        <div class="qp-tech">Technical Premium: <b>$500,000</b><div class="min">Minimum Premium: $400,000</div></div>
+        <div class="qp-mod">
+          <div class="row">
+            <div><label class="f-label">Prem/Pro Mod</label>
+              <div class="modin"><input class="f-input" id="qpMod1" value=".85"><span class="eq" id="qpMod1Eq">= $340,000</span></div>
+            </div>
+            <div style="flex:1"><label class="f-label">Name</label>
+              <select class="f-input"><option>Employees</option><option>Experience</option><option>Other</option></select>
+            </div>
+          </div>
+          <label class="f-label">Notes <span class="req">*</span></label>
+          <textarea>The employees are well trained, warranting a discount.</textarea>
+        </div>
+        <div class="qp-mod">
+          <div class="row">
+            <div><label class="f-label">Liquor Mod</label>
+              <div class="modin"><input class="f-input" id="qpMod2" value="1"><span class="eq" id="qpMod2Eq">= $20,000</span></div>
+            </div>
+            <div style="flex:1"><label class="f-label">Name</label>
+              <select class="f-input"><option>Other</option><option>Temp Licenses</option></select>
+            </div>
+          </div>
+          <label class="f-label">Notes <span class="req">*</span></label>
+          <textarea>Some custom text</textarea>
+        </div>
+        <div class="qp-tglrow">Show Mod Table <button class="switch on" id="qpModTgl" role="switch" aria-checked="true"></button></div>
+        <div class="qp-table" id="qpModTable">
+          <div class="thr"><span>Schedule Modifiers</span><span>Final Premium</span></div>
+          <div class="tr"><span>@ .75</span><span>$375,000</span></div><div class="tr"><span>@ .80</span><span>$400,000</span></div><div class="tr"><span>@ .85</span><span>$425,000</span></div><div class="tr"><span>@ .90</span><span>$450,000</span></div><div class="tr"><span>@ .95</span><span>$475,000</span></div><div class="tr"><span>@ 1</span><span>$500,000</span></div><div class="tr"><span>@ 1.10</span><span>$550,000</span></div><div class="tr"><span>@ 1.25</span><span>$625,000</span></div><div class="tr"><span>@ 1.5</span><span>$750,000</span></div>
+        </div>
+      </div>
+      <div class="qp-sec" style="cursor:default">Premiums</div>
+      <div class="qp-prem">
+        <div class="pr"><span>GL Premium</span><b>$400,000</b></div>
+        <div class="pr"><span>Endorsement Premium</span><b>$2,000</b></div>
+        <div class="pr"><span>Composite Rate</span><span class="rate"><input class="f-input" value="$ 15"><span class="per">per $1000</span></span></div>
+        <div class="pr total"><span>Total</span><b>$402,000</b></div>
+        <div class="pr"><span class="lk" data-toast="Premium override applied">Premium Override</span><input class="f-input" value="$ 400,000"></div>
+      </div>
+      <div class="qp-sec" style="cursor:default">Additional Charges</div>
+      <div class="qp-prem" style="margin-bottom:8px">
+        <div class="pr"><span>TRIA Premium</span><b>+ $2,000</b></div>
+        <div class="pr"><span>Fees</span><b>+ $750</b></div>
+      </div>
+      <div class="qp-grand"><span>Total + Additional Charges</span><b>$500,000</b></div>
+      <div class="qp-acc"><div class="ah">Class Code Aggregate <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="ab">
+          <div class="tr"><span>56701</span><span>$114,731</span></div>
+          <div class="tr"><span>49451</span><span>$100,000</span></div>
+          <div class="tr"><span>49451</span><span>$100,000</span></div>
+        </div>
+      </div>
+      <div class="qp-acc"><div class="ah">Location Breakdown <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="ab">
+          <div class="tr"><span>1. 1234 Sesame St, Ste B, Charleston, SC</span><span>$100,000</span></div><div class="tr"><span>2. 1234 Sesame St, Ste B, Charleston, SC</span><span>$100,000</span></div><div class="tr"><span>3. 1234 Sesame St, Ste B, Charleston, SC</span><span>$100,000</span></div><div class="tr"><span>4. 1234 Sesame St, Ste B, Charleston, SC</span><span>$100,000</span></div><div class="tr"><span>5. 1234 Sesame St, Ste B, Charleston, SC</span><span>$100,000</span></div>
+        </div>
+      </div>
+      <button class="qp-fab" id="qpFab" aria-label="Collapse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </div>
 </div>
 
 <!-- Filter popover -->
@@ -5843,6 +5986,51 @@ document.getElementById("endBody").addEventListener("click", e => {
   if (e.target.closest("[data-endcontinue]")) openEndorse();
 });
 renderEndorsements();
+
+
+/* ============================================================
+   Floating quote-for-premiums widget (Rating page only)
+   ============================================================ */
+const qpWrap = $("qpWrap");
+
+function updateQpVisibility(){
+  const onRating = screenRate.classList.contains("active") &&
+    document.querySelector('[data-rwt="rating"]')?.classList.contains("active");
+  document.body.classList.toggle("qp-visible", !!onRating);
+}
+function updateQpOffset(){
+  const panelOpen = sidePanel.classList.contains("open");
+  qpWrap.style.right = panelOpen ? (sidePanel.offsetWidth + 78) + "px" : "80px";
+}
+new MutationObserver(() => { updateQpVisibility(); }).observe(screenRate, {attributes:true, attributeFilter:["class"]});
+const ratingTabEl = document.querySelector('[data-rwt="rating"]');
+if (ratingTabEl) new MutationObserver(updateQpVisibility).observe(ratingTabEl, {attributes:true, attributeFilter:["class"]});
+new MutationObserver(updateQpOffset).observe(sidePanel, {attributes:true, attributeFilter:["class"]});
+
+$("qpPill").addEventListener("click", () => { qpWrap.classList.add("expanded"); });
+$("qpMin").addEventListener("click", () => qpWrap.classList.remove("expanded"));
+$("qpFab").addEventListener("click", () => qpWrap.classList.remove("expanded"));
+$("qpPricingHead").addEventListener("click", () => {
+  const closed = $("qpPricingHead").classList.toggle("closed");
+  $("qpPricing").style.display = closed ? "none" : "";
+});
+$("qpModTgl").addEventListener("click", () => {
+  const on = $("qpModTgl").classList.toggle("on");
+  $("qpModTgl").setAttribute("aria-checked", String(on));
+  $("qpModTable").style.display = on ? "" : "none";
+});
+function qpModMath(inputId, eqId, base){
+  $(inputId).addEventListener("input", () => {
+    const v = parseFloat($(inputId).value);
+    $(eqId).textContent = isNaN(v) ? "= —" : "= $" + Math.round(v * base).toLocaleString();
+  });
+}
+qpModMath("qpMod1", "qpMod1Eq", 400000);
+qpModMath("qpMod2", "qpMod2Eq", 20000);
+document.querySelectorAll(".qp-acc .ah").forEach(h => h.addEventListener("click", () =>
+  h.closest(".qp-acc").classList.toggle("open")));
+updateQpVisibility();
+updateQpOffset();
 
 /* ---------- Init ---------- */
 updateAllChips();
