@@ -13,4 +13,4 @@ Interactive HTML prototype for the Blackbird policy platform. All data is sample
 
 Updated automatically by Claude as designs evolve. Each commit message describes the change.
 
-_Last deploy trigger: 2026-07-06T15:34:07.841981Z_
+_Last deploy trigger: 2026-07-07T17:23:00.749145+00:00_
