@@ -2953,13 +2953,6 @@ body.qp-visible .qp{display:block}
 
 <!-- Sticky compact policy header -->
 <div class="sticky-head" id="stickyHead" aria-hidden="true">
-  <div class="crumbs" style="margin-bottom:7px">
-    <span class="crumb link" id="shCrumbSearch">Policy Search</span>
-    <span class="crumb-sep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
-    <span class="crumb link" id="shCrumbInsured">McCormick's Lighting</span>
-    <span class="crumb-sep"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
-    <span class="crumb">Flagship</span>
-  </div>
   <div class="sh-row">
     <span class="sh-title" id="shTitle">
       <svg class="bk" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.6L5 21V4a1 1 0 0 1 1-1Z"/></svg>
@@ -2967,6 +2960,7 @@ body.qp-visible .qp{display:block}
       <svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
     </span>
     <span class="sh-meta">
+      <span id="shMetaInsured">McCormick's Lighting</span><span class="dot">·</span>
       <span>Policy: <b>LB1EII-005799-01</b></span><span class="dot">·</span>
       <span>ID: <b>101809824</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span><span class="dot">·</span>
       <span>Eff Date: <b>2025/01/01</b></span><span class="dot">·</span>
@@ -3623,7 +3617,7 @@ function openPolicy(name){
   $("crumbInsured").textContent = name;
   $("metaInsured").textContent = name;
   $("metaInsuredRw").textContent = name;
-  if (document.getElementById("shCrumbInsured")) $("shCrumbInsured").textContent = name;
+  if (document.getElementById("shMetaInsured")) $("shMetaInsured").textContent = name;
   screenList.classList.remove("active");
   screenSubs.classList.remove("active");
   screenTasks.classList.remove("active");
@@ -5115,16 +5109,8 @@ window.addEventListener("scroll", updateStickyHead, { passive: true });
 
 /* keep the compact header's insured name in sync */
 function syncStickyInsured(){
-  $("shCrumbInsured").textContent = $("crumbInsured").textContent;
+  $("shMetaInsured").textContent = $("crumbInsured").textContent;
 }
-$("shCrumbSearch").addEventListener("click", () => {
-  const go = () => { if (screenRate.classList.contains("active")) screenRate.classList.remove("active"); backToList(); updateStickyHead(); };
-  if (screenRate.classList.contains("active")) confirmLeaveWorkspace(go); else go();
-});
-$("shCrumbInsured").addEventListener("click", () => {
-  const go = () => { if (screenRate.classList.contains("active")) backToRatingPage(); window.scrollTo({top:0, behavior:"smooth"}); };
-  if (screenRate.classList.contains("active")) confirmLeaveWorkspace(go); else go();
-});
 $("shTitle").addEventListener("click", () => showToast("Switch policy: Supported Excess · Custom"));
 
 
@@ -5379,7 +5365,7 @@ function applyRoute(){
     $("crumbInsured").textContent = name;
   $("metaInsured").textContent = name;
   $("metaInsuredRw").textContent = name;
-    if (document.getElementById("shCrumbInsured")) $("shCrumbInsured").textContent = name;
+    if (document.getElementById("shMetaInsured")) $("shMetaInsured").textContent = name;
     openRateWorkspace("Composite Rated Long Name", "11374428", tab);
   } else {
     routeShowList();
