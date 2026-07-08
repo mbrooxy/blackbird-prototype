@@ -1633,6 +1633,20 @@ body.qp-visible .qp{display:block}
 .qp-fab{position:absolute;right:16px;bottom:14px;width:44px;height:44px;border-radius:50%;background:#2367E8;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(12,60,150,.4);position:sticky;left:100%;bottom:8px;margin-top:8px}
 .qp-fab svg{width:18px;height:18px}
 
+
+/* ============ Workspace left sidebar nav ============ */
+.rw-grid{display:flex;gap:34px;align-items:flex-start}
+.rw-nav{width:150px;flex:none;position:sticky;top:20px}
+.rw-nav .back-link{display:inline-flex;margin-bottom:16px}
+.rwn-item{display:block;padding:8px 12px;font-size:13px;color:var(--ink-soft);font-weight:500;cursor:pointer;border-left:2px solid transparent}
+.rwn-item:hover{color:var(--bb-navy)}
+.rwn-item.active{color:var(--bb-blue);font-weight:700;border-left-color:var(--bb-blue)}
+.rwn-children{margin:0 0 2px}
+.rwn-children a{display:block;padding:6px 12px 6px 26px;font-size:12.5px;color:var(--ink-mute);cursor:pointer;border-left:2px solid transparent}
+.rwn-children a:hover{color:var(--bb-navy)}
+.rwn-children a.active{color:var(--bb-navy);font-weight:600;border-left-color:var(--bb-navy)}
+.rw-content{flex:1;min-width:0}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -2521,7 +2535,21 @@ body.qp-visible .qp{display:block}
       <div class="phead-rule" style="margin-bottom:18px"></div>
       <div id="rateSentinel"></div>
 
-      <span class="back-link" id="rwBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back</span>
+
+
+      <div class="rw-grid">
+      <nav class="rw-nav">
+        <span class="back-link" id="rwBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back</span>
+        <a class="rwn-item active" data-rwt="rating">Rating</a>
+        <div class="rwn-children">
+          <a data-rwanchor="rcLimits">Limits</a>
+          <a data-rwanchor="rcTria">TRIA</a>
+          <a data-rwanchor="rcWLoc">Locations</a>
+        </div>
+        <a class="rwn-item" data-rwt="forms">Forms (<span id="formsCount">51</span>)</a>
+        <a class="rwn-item" data-rwt="subjectivities">Subjectivities</a>
+      </nav>
+      <div class="rw-content">
 
       <div class="rw-titlebar">
         <h1>Policy Preparation</h1>
@@ -2535,11 +2563,7 @@ body.qp-visible .qp{display:block}
           <button class="btn btn-primary" data-toast="New quote created as draft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Quote</button>
         </div>
       </div>
-      <div class="rw-tabs tabs" style="margin-bottom:20px">
-        <button class="tab active" data-rwt="rating">Rating (<span class="rating-total" id="ratingTotal">$502,750</span>)</button>
-        <button class="tab" data-rwt="forms">Forms (<span id="formsCount">51</span>)</button>
-        <button class="tab" data-rwt="subjectivities">Subjectivities</button>
-      </div>
+
 
       <div class="rwtab" id="rwTabRating">
 
@@ -2759,6 +2783,9 @@ body.qp-visible .qp{display:block}
           <button class="add-subj" id="rwAddSubj">Add Subjectivity</button>
         </div>
       </div><!-- /rwTabSubj -->
+
+      </div><!-- /rw-content -->
+      </div><!-- /rw-grid -->
 
     </div>
   </main>
@@ -4845,6 +4872,7 @@ document.querySelectorAll("#ppChildren a[data-rwtab]").forEach(a =>
 /* Workspace tab switching */
 function switchRwTab(tab){
   document.querySelectorAll("[data-rwt]").forEach(t => t.classList.toggle("active", t.dataset.rwt === tab));
+  if (tab !== "rating") document.querySelectorAll("[data-rwanchor]").forEach(a => a.classList.remove("active"));
   if (screenRate.classList.contains("active") && !document.body.classList.contains("endorse-mode")){
     setHash(`prep/${encodeURIComponent($("rwCrumbInsured").textContent)}/${tab}`);
   }
@@ -6031,6 +6059,15 @@ document.querySelectorAll(".qp-acc .ah").forEach(h => h.addEventListener("click"
   h.closest(".qp-acc").classList.toggle("open")));
 updateQpVisibility();
 updateQpOffset();
+
+
+/* workspace sidebar child anchors */
+document.querySelectorAll("[data-rwanchor]").forEach(a => a.addEventListener("click", () => {
+  switchRwTab("rating");
+  document.querySelectorAll("[data-rwanchor]").forEach(x => x.classList.remove("active"));
+  a.classList.add("active");
+  setTimeout(() => document.getElementById(a.dataset.rwanchor)?.scrollIntoView({behavior:"smooth", block:"start"}), 40);
+}));
 
 /* ---------- Init ---------- */
 updateAllChips();
