@@ -518,7 +518,9 @@ select.f-input{appearance:none;cursor:pointer;background-image:url("data:image/s
 .sn-children.show{display:block}
 .sn-children a{padding-left:24px;font-size:12.5px}
 .subnav .sn-item{font-weight:600;color:var(--ink-soft)}
-.subnav .sn-item.active{color:var(--bb-navy);border-left-color:var(--bb-navy)}
+.subnav a{border-left:none!important;border-right:2px solid transparent}
+.subnav .sn-item.active{color:var(--bb-blue);border-right-color:var(--bb-blue)}
+.subnav .sn-children a.active{color:var(--bb-blue);font-weight:600;border-right-color:var(--bb-blue)}
 
 /* alerts */
 .alert{display:flex;align-items:center;gap:12px;border-radius:12px;padding:15px 20px;font-size:13.5px;font-weight:600}
@@ -688,8 +690,8 @@ select.f-input{appearance:none;cursor:pointer;background-image:url("data:image/s
 .pill-draft{margin-left:auto;background:var(--bg-tint);border:1px solid var(--line);color:var(--ink-soft);border-radius:99px;padding:4px 14px;font-size:12px;font-weight:600}
 
 /* ============ Rate workspace ============ */
-.rw-main{flex:1;min-width:0;padding:22px 44px 64px 40px;background:#FAFCFE}
-.rw-inner{max-width:1100px}
+.rw-main{flex:1;min-width:0;padding:40px 56px 64px}
+.rw-inner{max-width:none}
 .back-link{display:inline-flex;align-items:center;gap:7px;color:var(--bb-blue);font-weight:600;font-size:13.5px;margin-bottom:14px;cursor:pointer}
 .back-link:hover{text-decoration:underline}
 .back-link svg{width:14px;height:14px}
@@ -1289,9 +1291,12 @@ body.endorse-mode #secLocations,
 body.endorse-mode #secOverview > *:not(.eo-keep){opacity:.35;pointer-events:none}
 body.endorse-mode #secOverview{pointer-events:auto}
 body.endorse-mode #secOverview .eo-keep{opacity:1;pointer-events:auto}
-/* editable endorse cards hidden outside endorse mode */
-#eoGeneral.eo-hidden{display:none}
-body.endorse-mode #eoGeneral{display:block}
+/* NI + Broker cards always shown; Predominates card + editing only in endorse mode */
+#eoGeneral{display:block}
+body:not(.endorse-mode) #eoPredominates{display:none}
+body:not(.endorse-mode) #eoGeneral .f-input{pointer-events:none}
+body:not(.endorse-mode) #eoGeneral .revert-link{display:none}
+body:not(.endorse-mode) #eoGeneral .addnew{pointer-events:none;opacity:.55}
 body.endorse-mode #subnav{display:none}
 body.endorse-mode #subnavEo{display:block!important}
 body.endorse-mode #stickyHead{display:none}
@@ -1311,7 +1316,7 @@ body.endorse-mode #stickyHead{display:none}
 .ni-entry.open .ni-head .car svg{transform:rotate(180deg)}
 .ni-body{display:none;padding:16px 0 12px;max-width:700px}
 .ni-entry.open .ni-body{display:block}
-.f-input.changed{background:#FDF3DF;border-color:#F0DBAB}
+body.endorse-mode .f-input.changed{background:#FDF3DF;border-color:#F0DBAB}
 .revert-link{display:inline-block;font-size:12px;color:var(--bb-blue);font-weight:600;cursor:pointer;margin-top:6px}
 .revert-link:hover{text-decoration:underline}
 .eo-check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--bb-navy);margin-top:10px;cursor:pointer}
@@ -1641,13 +1646,13 @@ body.qp-visible .qp{display:block}
 .rw-grid{display:flex;gap:34px;align-items:flex-start}
 .rw-nav{width:150px;flex:none;position:sticky;top:20px}
 .rw-nav .back-link{display:inline-flex;margin-bottom:16px}
-.rwn-item{display:block;padding:8px 12px;font-size:13px;color:var(--ink-soft);font-weight:500;cursor:pointer;border-left:2px solid transparent}
+.rwn-item{display:block;padding:8px 12px;font-size:13px;color:var(--ink-soft);font-weight:500;cursor:pointer;border-right:2px solid transparent}
 .rwn-item:hover{color:var(--bb-navy)}
-.rwn-item.active{color:var(--bb-blue);font-weight:700;border-left-color:var(--bb-blue)}
+.rwn-item.active{color:var(--bb-blue);font-weight:700;border-right-color:var(--bb-blue)}
 .rwn-children{margin:0 0 2px}
-.rwn-children a{display:block;padding:6px 12px 6px 26px;font-size:12.5px;color:var(--ink-mute);cursor:pointer;border-left:2px solid transparent}
+.rwn-children a{display:block;padding:6px 12px 6px 26px;font-size:12.5px;color:var(--ink-mute);cursor:pointer;border-right:2px solid transparent}
 .rwn-children a:hover{color:var(--bb-navy)}
-.rwn-children a.active{color:var(--bb-navy);font-weight:600;border-left-color:var(--bb-navy)}
+.rwn-children a.active{color:var(--bb-blue);font-weight:600;border-right-color:var(--bb-blue)}
 .rw-content{flex:1;min-width:0}
 
 /* screen visibility override — must win over per-element display rules */
@@ -2039,8 +2044,7 @@ body.qp-visible .qp{display:block}
               <h2>Overview</h2>
               <div class="sec-actions">
                 <button class="btn btn-outline btn-sm" data-toast="Payment Terms modal would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Payment Terms</button>
-                <button class="btn btn-primary btn-sm" data-toast="Rate Policy would open the rating workspace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.2"/><circle cx="17.5" cy="17.5" r="2.2"/></svg>Rate Policy</button>
-                <button class="btn btn-primary btn-sm" data-endorse><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Endorse</button>
+                
               </div>
             </div>
 
