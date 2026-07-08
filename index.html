@@ -1655,6 +1655,33 @@ body.qp-visible .qp{display:block}
 .rwn-children a.active{color:var(--bb-blue);font-weight:600;border-right-color:var(--bb-blue)}
 .rw-content{flex:1;min-width:0}
 
+
+/* ============ Payment Terms modal ============ */
+.pt-card{background:#fff;border-radius:16px;width:760px;max-width:94vw;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-pop);padding:26px 30px}
+.pt-head{display:flex;align-items:flex-start;margin-bottom:4px}
+.pt-head h3{font-size:19px;font-weight:700;color:var(--bb-navy)}
+.pt-head .x{margin-left:auto;color:var(--bb-blue);cursor:pointer;padding:2px}
+.pt-head .x svg{width:16px;height:16px}
+.pt-sub{font-size:13.5px;color:var(--ink-soft);margin-bottom:18px}
+.pt-div{height:1px;background:var(--line-soft);margin:20px 0}
+.pt-sec{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--bb-navy);margin-bottom:16px}
+.pt-sec svg{width:16px;height:16px;color:var(--bb-blue)}
+.pt-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
+.pt-help{font-size:12px;color:var(--ink-mute);margin-top:6px}
+.aff{position:relative}
+.aff .f-input{width:100%;padding-right:34px}
+.aff .sfx{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--ink-mute);font-size:13px}
+.aff.pre .f-input{padding-left:28px;padding-right:12px}
+.aff .pfx{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--ink-mute);font-size:13px}
+.pt-composite{display:flex;align-items:center;gap:14px;background:var(--bg-tint);border:1px solid var(--line-soft);border-radius:11px;padding:14px 18px;margin-top:18px}
+.pt-composite .t{font-size:13.5px;font-weight:600;color:var(--bb-navy);margin-bottom:3px}
+.pt-composite .d{font-size:12.5px;color:var(--ink-mute)}
+.pt-composite .switch{margin-left:auto;flex:none}
+.pt-foot{display:flex;align-items:center;margin-top:22px}
+.pt-foot .reset{font-size:13.5px;font-weight:600;color:var(--bb-navy);cursor:pointer}
+.pt-foot .reset:hover{text-decoration:underline}
+.pt-foot .btns{margin-left:auto;display:flex;gap:10px}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -2043,7 +2070,7 @@ body.qp-visible .qp{display:block}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
               <h2>Overview</h2>
               <div class="sec-actions">
-                <button class="btn btn-outline btn-sm" data-toast="Payment Terms modal would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Payment Terms</button>
+                <button class="btn btn-outline btn-sm" id="ptBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Payment Terms</button>
                 
               </div>
             </div>
@@ -3059,6 +3086,54 @@ body.qp-visible .qp{display:block}
         </div>
       </div>
       <button class="qp-fab" id="qpFab" aria-label="Collapse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Payment Terms modal -->
+<div class="modal-overlay" id="ptModal" role="dialog" aria-modal="true" aria-labelledby="ptTitle">
+  <div class="pt-card">
+    <div class="pt-head"><h3 id="ptTitle">Payment Terms</h3>
+      <span class="x" id="ptClose" role="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>
+    </div>
+    <div class="pt-sub">Configure billing and payment settings for this policy. These settings apply to all quotes.</div>
+    <div class="pt-div"></div>
+
+    <div class="pt-sec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Billing Settings</div>
+    <div class="pt-grid">
+      <div><label class="f-label">Billing Type</label><select class="f-input" data-ptdef=""><option value=""></option><option>Direct Bill</option><option>Agency Bill</option></select></div>
+      <div><label class="f-label">Audit Period</label><select class="f-input" data-ptdef="1 year"><option>1 year</option><option>6 months</option><option>None</option></select></div>
+      <div><label class="f-label">Short Rate Factor</label><div class="aff"><input class="f-input" value="90" data-ptdef="90"><span class="sfx">%</span></div><div class="pt-help">Early cancellation penalty</div></div>
+      <div><label class="f-label">Commission</label><div class="aff"><input class="f-input" value="15" data-ptdef="15"><span class="sfx">%</span></div></div>
+    </div>
+    <div class="pt-composite">
+      <div><div class="t">Composite Billing</div><div class="d">Enable to combine multiple coverages into a single bill</div></div>
+      <button class="switch" id="ptComposite" role="switch" aria-checked="false"></button>
+    </div>
+    <div class="pt-div"></div>
+
+    <div class="pt-sec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.2"/><circle cx="17.5" cy="17.5" r="2.2"/></svg>Premium Factors</div>
+    <div class="pt-grid">
+      <div><label class="f-label">Min. Earned Premium</label><div class="aff"><input class="f-input" value="25" data-ptdef="25"><span class="sfx">%</span></div><div class="pt-help">% of Total Advance</div></div>
+      <div><label class="f-label">Min. &amp; Deposit Premium</label><div class="aff"><input class="f-input" value="100" data-ptdef="100"><span class="sfx">%</span></div><div class="pt-help">% of Advance Premium</div></div>
+    </div>
+    <div class="pt-div"></div>
+
+    <div class="pt-sec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.2c-.4-.8-1.4-1.4-2.5-1.4-1.5 0-2.7 1-2.7 2.1s1 1.7 2.7 2.1c1.7.4 2.7 1 2.7 2.1s-1.2 2.1-2.7 2.1c-1.1 0-2.1-.6-2.5-1.4"/><line x1="12" y1="6" x2="12" y2="7.8"/><line x1="12" y1="16.2" x2="12" y2="18"/></svg>Surplus Lines &amp; Fees</div>
+    <div class="pt-grid">
+      <div><label class="f-label">Surplus Lines Fees</label><div class="aff pre"><span class="pfx">$</span><input class="f-input" value="0.00" data-ptdef="0.00"></div></div>
+      <div><label class="f-label">Surplus Lines Tax</label><div class="aff pre"><span class="pfx">$</span><input class="f-input" value="0.00" data-ptdef="0.00"></div></div>
+      <div style="grid-column:1 / -1"><label class="f-label">Other Fees</label><div class="aff pre"><span class="pfx">$</span><input class="f-input" value="0.00" data-ptdef="0.00"></div><div class="pt-help">Enter additional fees not covered above.</div></div>
+    </div>
+    <div class="pt-div"></div>
+
+    <div class="pt-foot">
+      <span class="reset" id="ptReset">Reset to Defaults</span>
+      <span class="btns">
+        <button class="btn btn-outline" id="ptCancel">Cancel</button>
+        <button class="btn btn-primary" id="ptSave">Save</button>
+      </span>
     </div>
   </div>
 </div>
@@ -6070,6 +6145,27 @@ document.querySelectorAll("[data-rwanchor]").forEach(a => a.addEventListener("cl
   a.classList.add("active");
   setTimeout(() => document.getElementById(a.dataset.rwanchor)?.scrollIntoView({behavior:"smooth", block:"start"}), 40);
 }));
+
+
+/* ---------- Payment Terms modal ---------- */
+const ptModal = $("ptModal");
+function closePt(){ ptModal.classList.remove("show"); }
+$("ptBtn").addEventListener("click", () => ptModal.classList.add("show"));
+$("ptClose").addEventListener("click", closePt);
+$("ptCancel").addEventListener("click", closePt);
+$("ptSave").addEventListener("click", () => { closePt(); showToast("Payment terms saved"); });
+$("ptReset").addEventListener("click", () => {
+  ptModal.querySelectorAll("[data-ptdef]").forEach(el => el.value = el.dataset.ptdef);
+  $("ptComposite").classList.remove("on");
+  $("ptComposite").setAttribute("aria-checked", "false");
+  showToast("Payment terms reset to defaults");
+});
+$("ptComposite").addEventListener("click", () => {
+  const on = $("ptComposite").classList.toggle("on");
+  $("ptComposite").setAttribute("aria-checked", String(on));
+});
+ptModal.addEventListener("click", e => { if (e.target === ptModal) closePt(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && ptModal.classList.contains("show")) closePt(); });
 
 /* ---------- Init ---------- */
 updateAllChips();
