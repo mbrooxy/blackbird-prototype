@@ -5361,42 +5361,6 @@ $("diffToggle").addEventListener("click", () => {
 renderForms();
 renderCmp(false);
 
-/* ---------- Workspace Subjectivities tab ---------- */
-const RW_SUBJ = [
-  {tx:"Signed and dated application (Flagship)", done:true},
-  {tx:"Loss runs for the past 3–5 years (Flagship)", done:true},
-  {tx:"Signed broker of record (BOR) letter (Flagship)", done:true},
-  {tx:"Proof of active licenses or certifications (Flagship)", done:false},
-  {tx:"Inspection report review (Flagship)", done:false},
-  {tx:"Updated statement of values (SOV) (Flagship)", done:false}
-];
-function renderRwSubj(){
-  $("rwSubjList").innerHTML = RW_SUBJ.map((it,i) => `
-    <div class="subj-item${it.done ? " done" : ""}">
-      <div class="subj-row">
-        <span class="cb${it.done ? " on" : ""}" data-rws="${i}" role="checkbox" aria-checked="${it.done}">${CB_SVG}</span>
-        <span class="tx" style="font-size:13.5px">${it.tx}</span>
-      </div>
-      <div class="subj-meta"><span class="fup" data-toast="Follow-up composer would open here">Add follow up</span></div>
-    </div>`).join("");
-}
-$("rwSubjList").addEventListener("click", e => {
-  const cb = e.target.closest("[data-rws]");
-  if (cb){
-    const it = RW_SUBJ[Number(cb.dataset.rws)];
-    it.done = !it.done;
-    renderRwSubj();
-    showToast(it.done ? "Subjectivity resolved" : "Subjectivity reopened");
-  }
-});
-let rwSubjN = 0;
-$("rwAddSubj").addEventListener("click", () => {
-  rwSubjN++;
-  RW_SUBJ.push({tx:`New subjectivity #${rwSubjN} (Flagship)`, done:false});
-  renderRwSubj();
-});
-renderRwSubj();
-
 
 /* ============================================================
    Sticky compact policy header
