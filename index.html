@@ -1682,6 +1682,179 @@ body.qp-visible .qp{display:block}
 .pt-foot .reset:hover{text-decoration:underline}
 .pt-foot .btns{margin-left:auto;display:flex;gap:10px}
 
+
+/* ============ Subjectivities page ============ */
+.sj-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+.sj-card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff}
+.sj-card .th{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--bb-navy);margin-bottom:10px}
+.sj-card .ci{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.sj-card .ci svg{width:13px;height:13px}
+.sj-card .n{font-size:28px;font-weight:700;color:var(--bb-navy);letter-spacing:-.02em;margin-bottom:6px}
+.sj-card .d{font-size:11.5px;color:var(--ink-mute)}
+.sj-seg{display:inline-flex;background:var(--bg-tint);border-radius:11px;padding:3px;margin-bottom:18px}
+.sj-seg button{padding:9px 46px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--ink-mute)}
+.sj-seg button.active{background:#fff;color:var(--bb-blue);box-shadow:0 1px 4px rgba(20,40,80,.12)}
+.sj-controls{display:flex;flex-direction:column;gap:14px;margin-bottom:8px}
+.sj-controls .doc-search{max-width:390px}
+.sj-chips{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sj-ghead{display:flex;align-items:center;gap:9px;padding:20px 4px 12px;font-size:15px;font-weight:700;color:var(--bb-navy);cursor:pointer;user-select:none}
+.sj-ghead svg{width:13px;height:13px;color:var(--ink-soft);transition:transform .18s ease}
+.sj-ghead.collapsed svg{transform:rotate(-90deg)}
+.sj-ghead .cnt{background:var(--chip-active);color:var(--bb-blue);border-radius:99px;padding:1px 9px;font-size:11.5px;font-weight:700}
+.sj-row{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px;cursor:pointer;background:#fff;transition:box-shadow .13s ease}
+.sj-row:hover{box-shadow:0 3px 12px rgba(20,40,80,.08)}
+.sj-row.noc{border:1.5px solid var(--red)}
+.sj-row .tx{min-width:0}
+.sj-row .nm{font-size:14px;font-weight:600;color:var(--bb-navy);margin-bottom:6px}
+.sj-row .mt{font-size:12px;color:var(--ink-mute);display:flex;align-items:center;gap:8px}
+.sj-row .mt .nocl{color:var(--red);font-weight:600}
+.sj-row .right{margin-left:auto;display:flex;align-items:center;gap:12px;flex:none}
+.sj-row .car{color:var(--ink-mute)}
+.sj-row .car svg{width:14px;height:14px}
+.sjpill{display:inline-flex;border-radius:99px;padding:4px 14px;font-size:12px;font-weight:600;border:1.5px solid}
+.sjpill.ip{color:var(--bb-blue);border-color:#A9CFF7;background:#F4F9FE}
+.sjpill.ir{color:var(--orange);border-color:#F5C892;background:#FFF9F1}
+.sjpill.ns{color:var(--ink-mute);border-color:var(--line);background:var(--bg-tint)}
+.sjpill.cm{color:var(--green);border-color:#A9DFC2;background:#F1FAF5}
+.sjpill.rj{color:var(--red);border-color:#F3B3B6;background:#FDF3F3}
+.sjpill.wv,.sjpill.nn{color:var(--ink-soft);border-color:var(--line);background:var(--bg-tint)}
+/* detail slide-out */
+.sjp-id{font-size:11.5px;color:var(--ink-mute);letter-spacing:.04em;margin-bottom:6px}
+.sjp-title{font-size:17px;font-weight:700;color:var(--bb-navy);margin-bottom:16px;line-height:1.35}
+.sjp-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink-mute);margin:22px 0 10px;display:flex;align-items:center}
+.sjp-lbl .lk{margin-left:auto;color:var(--bb-blue);font-weight:600;font-size:12.5px;letter-spacing:0;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.sjp-lbl .lk:hover{text-decoration:underline}
+.sjp-lbl .lk svg{width:13px;height:13px}
+.sjp-status{display:flex;gap:8px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.sjp-status .sc{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--ink-mute);cursor:pointer}
+.sjp-status .sc:hover{border-color:#A9CFF7;color:var(--bb-blue)}
+.sjp-status .sc.active{border-color:var(--bb-blue);color:var(--bb-blue);background:#F4F9FE}
+.sjp-kv{display:flex;justify-content:space-between;font-size:13px;padding:8px 0}
+.sjp-kv .k{color:var(--ink-soft)}
+.sjp-kv .v{color:var(--bb-navy);font-weight:500}
+.sjp-kv .v.lk{color:var(--bb-blue);font-weight:600;cursor:pointer}
+.sjp-kv .v.lk:hover{text-decoration:underline}
+.esc-step{display:flex;gap:12px;padding:6px 0}
+.esc-step .dot{width:20px;height:20px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+.esc-step .dot.done{background:var(--bb-blue);color:#fff}
+.esc-step .dot.done svg{width:11px;height:11px}
+.esc-step .dot.todo{border:2px solid #A9CFF7}
+.esc-step .dot.danger{border:2px solid var(--red)}
+.esc-step .t{font-size:13.5px;font-weight:600;color:var(--bb-navy)}
+.esc-step .t.danger{color:var(--red)}
+.esc-step .s{font-size:12px;color:var(--ink-mute);margin-top:2px}
+.noc-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border-radius:9px;padding:9px 16px;font-size:13px;font-weight:700;margin:8px 0 4px 32px}
+.noc-btn:hover{background:#C93A3F}
+.noc-btn svg{width:14px;height:14px}
+.fu-box{border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:12px}
+.fu-box textarea{width:100%;border:none;outline:none;resize:vertical;min-height:40px;font-family:inherit;font-size:13px;color:var(--ink)}
+.fu-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.fu-item{background:var(--bg-tint);border-radius:11px;padding:12px 14px;margin-bottom:10px}
+.fu-item .t{font-size:13px;color:var(--ink);margin-bottom:6px}
+.fu-item .m{font-size:11.5px;color:var(--ink-mute)}
+.sjdoc{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:10px}
+.sjdoc .nm{font-size:13px;font-weight:500;color:var(--bb-navy);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sjh-item{display:flex;gap:10px;padding:7px 0;font-size:12.5px}
+.sjh-item .b{width:6px;height:6px;border-radius:50%;background:#A9CFF7;flex:none;margin-top:6px}
+.sjh-item .t{color:var(--ink)}
+.sjh-item .m{color:var(--ink-mute);font-size:11.5px;margin-top:2px}
+@media (max-width:1280px){.sj-cards{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ============ Subjectivities page ============ */
+.sj-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.sj-head{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.sj-head svg.ic{width:19px;height:19px;color:var(--ink-mute)}
+.sj-head h2{font-size:18px;font-weight:700;color:var(--bb-navy)}
+.sj-new{margin-left:auto;display:flex}
+.sj-new .m{border:1px solid #BBD8F8;color:var(--bb-blue);font-weight:600;font-size:13.5px;padding:9px 18px;border-radius:9px 0 0 9px;background:#fff;display:inline-flex;align-items:center;gap:7px}
+.sj-new .c{border:1px solid #BBD8F8;border-left:none;color:var(--bb-blue);padding:9px 11px;border-radius:0 9px 9px 0;background:#fff}
+.sj-new button:hover{background:var(--bg-tint)}
+.sj-new svg{width:13px;height:13px}
+.sj-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px}
+.sj-kpi{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.sj-kpi .top{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--bb-navy);margin-bottom:10px}
+.sj-kpi .ic{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex:none}
+.sj-kpi .ic svg{width:14px;height:14px;color:#fff}
+.sj-kpi .num{font-size:30px;font-weight:800;color:var(--bb-navy);line-height:1;margin-bottom:8px}
+.sj-kpi .sub{font-size:12px;color:var(--ink-mute)}
+.sj-seg{display:inline-flex;background:#F1F4F8;border-radius:10px;padding:3px;margin-bottom:18px}
+.sj-seg button{border:none;background:transparent;font-size:13.5px;font-weight:600;color:var(--ink-mute);padding:8px 46px;border-radius:8px;cursor:pointer}
+.sj-seg button.active{background:#fff;color:var(--bb-blue);box-shadow:0 1px 3px rgba(20,40,80,.12)}
+.sj-search{position:relative;max-width:400px;margin-bottom:16px}
+.sj-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--ink-mute)}
+.sj-search input{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px 10px 34px;font-size:13.5px;color:var(--bb-navy);font-family:inherit}
+.sj-search input::placeholder{color:var(--ink-mute)}
+.sj-chips{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.sj-chips .vdiv{width:1px;height:22px;background:var(--line)}
+.sj-grp-h{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:700;color:var(--bb-navy);padding:20px 0 12px;cursor:pointer;user-select:none}
+.sj-grp-h svg{width:14px;height:14px;color:var(--bb-navy);transition:transform .15s}
+.sj-grp-h.closed svg{transform:rotate(-90deg)}
+.sj-grp-h .cnt{background:#E8F1FD;color:var(--bb-blue);font-size:11.5px;font-weight:700;border-radius:99px;padding:2px 9px}
+.sj-grp-h + .sj-rows{border-top:1px solid var(--line-soft);padding-top:14px}
+.sj-rows{display:flex;flex-direction:column;gap:12px}
+.sj-row{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:11px;padding:15px 18px;cursor:pointer;background:#fff}
+.sj-row:hover{border-color:#BBD8F8;box-shadow:0 1px 4px rgba(20,60,120,.06)}
+.sj-row.alert{border:1.5px solid var(--red)}
+.sj-row .tt{font-size:14px;font-weight:600;color:var(--bb-navy);margin-bottom:5px}
+.sj-row .mt{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-mute)}
+.sj-row .mt .noc{color:var(--red);font-weight:600}
+.sj-row .chev{margin-left:auto;display:flex;align-items:center;gap:12px}
+.sj-row .chev svg{width:14px;height:14px;color:var(--ink-mute)}
+.sjp{border-radius:99px;padding:4px 13px;font-size:11.5px;font-weight:600;border:1.5px solid;white-space:nowrap}
+.sjp-blue{color:var(--bb-blue);border-color:#A8CEF7;background:#F3F8FE}
+.sjp-orange{color:#D97A16;border-color:#F3CD9B;background:#FEF8EF}
+.sjp-gray{color:var(--ink-mute);border-color:var(--line);background:#F7F9FB}
+.sjp-green{color:var(--green);border-color:#B4E3C9;background:#F1FBF5}
+.sjp-pink{color:var(--pink);border-color:#F5B8D4;background:#FEF3F9}
+/* slide-out */
+.sjd-id{font-size:12px;font-weight:600;color:var(--ink-mute);letter-spacing:.03em}
+.sjd-title{font-size:17px;font-weight:700;color:var(--bb-navy);margin:6px 0 16px}
+.sjd-lbl{font-size:11px;font-weight:700;color:var(--ink-mute);letter-spacing:.06em;margin-bottom:10px}
+.sjd-status{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--line-soft);margin-bottom:16px}
+.sjd-status .sc{border:1.5px solid var(--line);border-radius:99px;background:#fff;color:var(--ink-mute);font-size:12px;font-weight:600;padding:5px 13px;cursor:pointer}
+.sjd-status .sc:hover{border-color:#BBD8F8;color:var(--bb-blue)}
+.sjd-status .sc.on{border-color:var(--bb-blue);color:var(--bb-blue);background:#F3F8FE}
+.sjd-frow{display:flex;align-items:center;font-size:13.5px;padding:7px 0}
+.sjd-frow .k{color:var(--ink-soft)}
+.sjd-frow .v{margin-left:auto;color:var(--bb-navy);font-weight:500}
+.sjd-frow .v.link{color:var(--bb-blue);cursor:pointer;font-weight:600}
+.sjd-frow .v.link:hover{text-decoration:underline}
+.sjd-sec{border-top:1px solid var(--line-soft);margin-top:16px;padding-top:16px}
+.sjd-sec-h{display:flex;align-items:center;margin-bottom:12px}
+.sjd-sec-h .a{margin-left:auto;color:var(--bb-blue);font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.sjd-sec-h .a svg{width:13px;height:13px}
+.sjd-sec-h .a:hover{text-decoration:underline}
+.esc-step{display:flex;gap:11px;padding:0 0 16px;position:relative}
+.esc-step:before{content:"";position:absolute;left:8px;top:20px;bottom:-2px;width:1.5px;background:var(--line-soft)}
+.esc-step:last-child:before{display:none}
+.esc-dot{width:17px;height:17px;border-radius:50%;flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.esc-dot.done{background:var(--bb-blue)}
+.esc-dot.done svg{width:9px;height:9px;color:#fff}
+.esc-dot.open{border:2px solid #A8CEF7;background:#fff}
+.esc-dot.red{border:2px solid var(--red);background:#fff}
+.esc-step .t{font-size:13.5px;font-weight:600;color:var(--bb-navy)}
+.esc-step.red .t{color:var(--red)}
+.esc-step .s{font-size:12px;color:var(--ink-mute);margin-top:2px}
+.esc-noc-btn{margin-top:9px;background:var(--red);color:#fff;border:none;border-radius:9px;font-weight:600;font-size:13px;padding:10px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.esc-noc-btn svg{width:14px;height:14px}
+.esc-noc-btn:hover{filter:brightness(1.08)}
+.fu-composer{border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin-bottom:12px}
+.fu-composer textarea{width:100%;border:none;outline:none;font-family:inherit;font-size:13.5px;color:var(--bb-navy);resize:vertical;min-height:44px}
+.fu-composer .btns{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.fu-item{background:var(--bg-tint);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.fu-item .t{font-size:13.5px;color:var(--bb-navy);margin-bottom:6px}
+.fu-item .m{font-size:12px;color:var(--ink-mute)}
+.sjdoc{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin-bottom:10px}
+.sjdoc .pdf{width:34px;height:34px;border-radius:7px;background:#FDECEC;color:var(--red);display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:800;flex:none}
+.sjdoc .n{font-size:13.5px;font-weight:500;color:var(--bb-navy)}
+.sjdoc .kb{margin-left:auto;color:var(--ink-mute);cursor:pointer;padding:4px}
+.sjdoc .kb svg{width:15px;height:15px}
+.sjh-item{display:flex;gap:10px;padding-bottom:14px;position:relative}
+.sjh-item .d{width:7px;height:7px;border-radius:50%;background:#A8CEF7;flex:none;margin-top:5px}
+.sjh-item .t{font-size:13px;color:var(--bb-navy)}
+.sjh-item .s{font-size:12px;color:var(--ink-mute);margin-top:2px}
+
 /* screen visibility override — must win over per-element display rules */
 .screen:not(.active){display:none !important}
 
@@ -1932,6 +2105,7 @@ body.qp-visible .qp{display:block}
             <a data-rwtab="rating">Rating</a>
             <a data-rwtab="forms">Forms</a>
             <a data-rwtab="subjectivities">Subjectivities</a>
+            <a data-page="pageSubjectivities" data-ppchild>Subjectivities</a>
           </div>
           <a class="sn-item" data-page="pageEndorsements">Endorsements</a>
           <a class="sn-item" data-page="pageDocuments">Documents</a>
@@ -2166,6 +2340,41 @@ body.qp-visible .qp{display:block}
         </div><!-- /pagePolicyInfo -->
 
         <!-- ============ Claims page ============ -->
+        <div class="dpage" id="pageSubjectivities">
+          <section class="sec-card">
+            <div class="sec-head">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 13 4 4L14 9"/><path d="m10 13 4 4 8-8"/></svg>
+              <h2>Subjectivities</h2>
+              <div class="sec-actions">
+                <div class="addtask">
+                  <button class="main" id="sjNew"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New</button>
+                  <button class="car" data-toast="Subjectivity catalogue would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+                </div>
+              </div>
+            </div>
+            <div class="sj-cards" id="sjCards"></div>
+            <div class="sj-seg" role="tablist">
+              <button class="active" data-sjseg="open" role="tab">Open</button>
+              <button data-sjseg="done" role="tab">Completed</button>
+            </div>
+            <div class="sj-controls" id="sjControls">
+              <div class="doc-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+                <input type="text" id="sjSearch" placeholder="Start typing or pick from the catalogue">
+              </div>
+              <div class="sj-chips">
+                <button class="chip fchip" data-fkey="sjGroup">Group</button>
+                <span style="width:1px;height:24px;background:var(--line)"></span>
+                <button class="chip fchip" data-fkey="sjAssignee">Assignee</button>
+                <button class="chip fchip" data-fkey="sjStatus">Status</button>
+                <button class="chip" id="sjOverdueChip">Overdue</button>
+                <button class="chip fchip" data-fkey="sjNoc">NOC</button>
+              </div>
+            </div>
+            <div id="sjList"></div>
+          </section>
+        </div>
+
         <div class="dpage" id="pageEndorsements">
           <section class="sec-card">
             <div class="sec-head">
@@ -2586,7 +2795,7 @@ body.qp-visible .qp{display:block}
           <a data-rwanchor="rcWLoc">Locations</a>
         </div>
         <a class="rwn-item" data-rwt="forms">Forms (<span id="formsCount">51</span>)</a>
-        <a class="rwn-item" data-rwt="subjectivities">Subjectivities</a>
+        <a class="rwn-item" id="rwnSubj">Subjectivities</a>
       </nav>
       <div class="rw-content">
 
@@ -2816,10 +3025,33 @@ body.qp-visible .qp{display:block}
       </div><!-- /rwTabForms -->
 
       <div class="rwtab" id="rwTabSubj" style="display:none">
-        <div class="forms-card" style="max-width:720px">
-          <div class="fc-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8.5 12 2.5 2.5 5-5"/></svg><h2>Subjectivities</h2></div>
-          <div id="rwSubjList"></div>
-          <button class="add-subj" id="rwAddSubj">Add Subjectivity</button>
+        <div class="sj-card">
+          <div class="sj-head">
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 12 4 4L14 8"/><path d="m10 14 2 2 8-8"/></svg>
+            <h2>Subjectivities</h2>
+            <div class="sj-new">
+              <button class="m" id="sjNewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New</button>
+              <button class="c" data-toast="Subjectivity catalogue would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+            </div>
+          </div>
+          <div class="sj-kpis">
+            <div class="sj-kpi"><div class="top"><span class="ic" style="background:#4DA3F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="8"/></svg></span>Open</div><div class="num" id="sjKpiOpen">10</div><div class="sub">Not started · in progress · in review</div></div>
+            <div class="sj-kpi"><div class="top"><span class="ic" style="background:#E2483D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></span>Due next 7 days</div><div class="num" id="sjKpiDue">4</div><div class="sub">Approaching due date</div></div>
+            <div class="sj-kpi"><div class="top"><span class="ic" style="background:#E8862E"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="16" y1="11" x2="22" y2="11"/></svg></span>In follow-up</div><div class="num" id="sjKpiFup">6</div><div class="sub">Past due · 10–20 days post bind</div></div>
+            <div class="sj-kpi"><div class="top"><span class="ic" style="background:#C2273D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></span>Notice of Cancellation</div><div class="num" id="sjKpiNoc">2</div><div class="sub">30+ days · notice of cancellation</div></div>
+          </div>
+          <div><div class="sj-seg"><button class="active" data-sjtab="open">Open</button><button data-sjtab="done">Completed</button></div></div>
+          <div class="sj-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><input id="sjSearch" placeholder="Start typing or pick from the catalogue"></div>
+          <div class="sj-chips" id="sjChips">
+            <button class="chip" id="sjGroupChip">Group: <b>Priority</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <span class="vdiv"></span>
+            <button class="chip fchip" data-fkey="sjAssignee">Assignee</button>
+            <button class="chip fchip" data-fkey="sjStatus">Status</button>
+            <button class="chip" id="sjOverdue">Overdue</button>
+            <button class="chip fchip" data-fkey="sjNoc">NOC</button>
+          </div>
+          <div id="sjOpenWrap"></div>
+          <div id="sjDoneWrap" style="display:none"></div>
         </div>
       </div><!-- /rwTabSubj -->
 
@@ -3272,6 +3504,10 @@ function uniq(arr){ return [...new Set(arr)].sort(); }
 const PREM_RANGES = {"Under $1M":[0, 1e6], "$1M \u2013 $2M":[1e6, 2e6], "Over $2M":[2e6, Infinity]};
 
 const FILTERS = {
+  /* Subjectivities */
+  sjAssignee: {label:"Assignee", type:"multi", options:["A. Łukasiewicz","B. Shaw","M. Brooks"], sel:new Set(), refresh:"subj"},
+  sjStatus:   {label:"Status", type:"multi", options:["Not Started","In Progress","In Review"], sel:new Set(), refresh:"subj"},
+  sjNoc:      {label:"NOC", type:"single", options:["Open","NOC only"], val:"Open", refresh:"subj"},
   /* Policies list */
   lob:      {label:"LOB", type:"multi", options:["FLAG","AE","XSPL","UXS","CUST"], sel:new Set(), refresh:"policies"},
   effDate:  {label:"Eff Date", type:"range", from:"", to:"", refresh:"policies"},
@@ -3349,6 +3585,7 @@ function updateChip(key){
 function updateAllChips(){ Object.keys(FILTERS).forEach(updateChip); }
 
 const FILTER_REFRESH = {
+  subj(){ renderSubjs(); },
   policies(){ state.page = 1; render(); },
   subs(){ subsState.page = 1; renderSubs(); },
   tasks(){ renderTasks(); renderTaskKpis(); },
@@ -6166,6 +6403,190 @@ $("ptComposite").addEventListener("click", () => {
 });
 ptModal.addEventListener("click", e => { if (e.target === ptModal) closePt(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && ptModal.classList.contains("show")) closePt(); });
+
+
+/* ================= Subjectivities ================= */
+const SUBJS = [
+  {id:"SUBJ-001", title:"Sexual abuse & misconduct supplemental, signed and dated", grp:"noc", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Progress",
+   followups:[
+     {t:"Broker advised the insured will countersign this week and return the application.", by:"Agata Kowalska", at:"Jul 6, 2026 · 9:41 AM"},
+     {t:"First notice sent; broker said prior carrier is slow to release runs.", by:"Agata Kowalska", at:"Jul 6, 2026 · 9:41 AM"}],
+   docs:["Acord Application","Document-name.pdf"],
+   hist:[
+     {t:"Document added by Agata Kowalska", at:"Today · 2:14 PM"},
+     {t:"Follow-up logged by Agata Kowalska", at:"Jul 8, 2026 · 3:02 PM"},
+     {t:"Follow-up logged by Agata Kowalska", at:"Jul 6, 2026 · 9:41 AM"},
+     {t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-002", title:"5yr CV loss runs, nil claims, detail over $50k", grp:"noc", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Review", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-003", title:"Inspection with compliance recommendations", grp:"f20", due:"Bind + 20d", assignee:"A. Łukasiewicz", noc:false, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-004", title:"Certificate of insurance for subcontractors", grp:"f20", due:"Bind + 20d", assignee:"A. Łukasiewicz", noc:false, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-005", title:"Signed ACORD and TRIA application", grp:"f10", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-006", title:"Surplus lines verification form, signed and dated", grp:"f10", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-007", title:"Signed statement of values (SOV)", grp:"f10", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-008", title:"Fire suppression / sprinkler certificate", grp:"track", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"Not Started", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-009", title:"Driver list and MVRs for scheduled drivers", grp:"track", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"Not Started", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-010", title:"Employment practices supplemental", grp:"track", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:true, status:"In Progress", followups:[], docs:[], hist:[{t:"Added from catalogue by Bernie Shaw", at:"Jun 24, 2026 · 11:18 AM"}]},
+  {id:"SUBJ-011", title:"Confirm no liquor sales on premises", grp:"track", due:"Prior to Bind", assignee:"A. Łukasiewicz", noc:false, status:"Completed", followups:[], docs:[], hist:[{t:"Marked completed by Agata Kowalska", at:"Jul 1, 2026 · 10:02 AM"}]},
+  {id:"SUBJ-012", title:"Signed ACORD and TRIA application", grp:"track", due:"Prior to Bind", assignee:"A. Łukasiewicz", noc:false, status:"Completed", followups:[], docs:[], hist:[{t:"Marked completed by Agata Kowalska", at:"Jul 1, 2026 · 10:02 AM"}]},
+  {id:"SUBJ-013", title:"Surplus lines verification form, signed and dated", grp:"track", due:"Prior to Bind", assignee:"A. Łukasiewicz", noc:false, status:"Rejected", followups:[], docs:[], hist:[{t:"Marked rejected by Agata Kowalska", at:"Jul 1, 2026 · 10:02 AM"}]}
+];
+const SJ_DONE = ["Completed","Rejected","Waived","Not Needed"];
+const SJ_GROUPS = [
+  {key:"noc",   label:"Notice of Cancellation (NOC)"},
+  {key:"f20",   label:"Additional Follow-up (20 Days post-bind)"},
+  {key:"f10",   label:"Initial Follow-up (10 Days post-bind)"},
+  {key:"track", label:"On Track"}
+];
+const SJ_PILL = {"Not Started":"sjp-gray","Not Needed":"sjp-gray","In Progress":"sjp-blue","In Review":"sjp-orange","Waived":"sjp-gray","Rejected":"sjp-pink","Completed":"sjp-green"};
+let sjTab = "open", sjQuery = "", sjOverdueOnly = false;
+const sjCollapsed = new Set();
+
+function sjIsDone(s){ return SJ_DONE.includes(s.status); }
+function sjFiltered(){
+  const fA = FILTERS.sjAssignee.sel, fS = FILTERS.sjStatus.sel, nocOnly = FILTERS.sjNoc.val === "NOC only";
+  return SUBJS.filter(s => {
+    if (sjQuery && !s.title.toLowerCase().includes(sjQuery)) return false;
+    if (fA.size && !fA.has(s.assignee)) return false;
+    if (fS.size && !fS.has(s.status)) return false;
+    if (nocOnly && !s.noc) return false;
+    if (sjOverdueOnly && s.grp === "track") return false;
+    return true;
+  });
+}
+function sjRowHtml(s){
+  return `<div class="sj-row${s.grp === "noc" && !sjIsDone(s) ? " alert" : ""}" data-sj="${s.id}">
+    <div><div class="tt">${s.title}</div>
+      <div class="mt"><span>${s.due}</span><span>·</span><span>${s.assignee}</span>${s.noc && !sjIsDone(s) ? '<span>·</span><span class="noc">NOC</span>' : ""}</div></div>
+    <div class="chev"><span class="sjp ${SJ_PILL[s.status]}">${s.status}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></div>
+  </div>`;
+}
+function renderSubjs(){
+  const items = sjFiltered();
+  const open = items.filter(s => !sjIsDone(s)), done = items.filter(sjIsDone);
+  $("sjOpenWrap").innerHTML = SJ_GROUPS.map(g => {
+    const rows = open.filter(s => s.grp === g.key);
+    if (!rows.length) return "";
+    const closed = sjCollapsed.has(g.key);
+    return `<div class="sj-grp-h${closed ? " closed" : ""}" data-sjgrp="${g.key}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      ${g.label} <span class="cnt">${rows.length}</span></div>
+      <div class="sj-rows" style="display:${closed ? "none" : "flex"}">${rows.map(sjRowHtml).join("")}</div>`;
+  }).join("") || emptyState("No open subjectivities", "Everything is completed or filtered out.");
+  $("sjDoneWrap").innerHTML = done.length
+    ? `<div class="sj-grp-h" style="cursor:default"><span style="font-size:16px">Completed</span> <span class="cnt">${done.length}</span></div>
+       <div class="sj-rows">${done.map(sjRowHtml).join("")}</div>`
+    : emptyState("No completed subjectivities", "Completed and rejected items will appear here.");
+  /* KPIs: open + NOC live, mid two per design */
+  const allOpen = SUBJS.filter(s => !sjIsDone(s));
+  $("sjKpiOpen").textContent = allOpen.length;
+  $("sjKpiNoc").textContent = allOpen.filter(s => s.grp === "noc").length;
+  $("sjKpiFup").textContent = Math.max(0, allOpen.filter(s => s.grp !== "track").length - 1);
+  /* bindings */
+  document.querySelectorAll("[data-sjgrp]").forEach(h => h.addEventListener("click", () => {
+    const k = h.dataset.sjgrp;
+    sjCollapsed.has(k) ? sjCollapsed.delete(k) : sjCollapsed.add(k);
+    renderSubjs();
+  }));
+  document.querySelectorAll("[data-sj]").forEach(r => r.addEventListener("click", () => openSubjPanel(r.dataset.sj)));
+}
+$("sjSearch").addEventListener("input", e => { sjQuery = e.target.value.trim().toLowerCase(); renderSubjs(); });
+document.querySelectorAll("[data-sjtab]").forEach(b => b.addEventListener("click", () => {
+  sjTab = b.dataset.sjtab;
+  document.querySelectorAll("[data-sjtab]").forEach(x => x.classList.toggle("active", x === b));
+  $("sjOpenWrap").style.display = sjTab === "open" ? "" : "none";
+  $("sjDoneWrap").style.display = sjTab === "done" ? "" : "none";
+}));
+$("sjOverdue").addEventListener("click", () => {
+  sjOverdueOnly = !sjOverdueOnly;
+  $("sjOverdue").classList.toggle("on", sjOverdueOnly);
+  renderSubjs();
+});
+$("sjGroupChip").addEventListener("click", () => showToast("Grouping: Priority · Due date · Assignee"));
+$("sjNewBtn").addEventListener("click", () => {
+  const id = "SUBJ-" + String(SUBJS.length + 1).padStart(3, "0");
+  SUBJS.push({id, title:"New subjectivity", grp:"track", due:"Bind + 30d", assignee:"A. Łukasiewicz", noc:false, status:"Not Started", followups:[], docs:[],
+    hist:[{t:"Added manually by Matt Brooks", at:"Today · " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"})}]});
+  renderSubjs(); openSubjPanel(id); showToast(id + " added");
+});
+
+/* ---------- Subjectivity slide-out ---------- */
+function openSubjPanel(id){
+  const s = SUBJS.find(x => x.id === id);
+  if (!s) return;
+  activePanel = null;
+  sidePanel.classList.add("open", "xwide");
+  sidePanel.classList.remove("wide");
+  document.querySelectorAll(".util-rail [data-panel]").forEach(b => b.classList.remove("active"));
+  spTitle.textContent = s.id;
+  spBody.style.padding = "";
+  const now = () => "Today · " + new Date().toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
+  spBody.innerHTML = `
+    <div class="sjd-title">${s.title}</div>
+    <div class="sjd-lbl" style="letter-spacing:0;font-size:12.5px;font-weight:600;text-transform:none">Status</div>
+    <div class="sjd-status">${["Not Started","Not Needed","In Progress","In Review","Waived","Rejected","Completed"]
+      .map(st => `<button class="sc${st === s.status ? " on" : ""}" data-sjst="${st}">${st}</button>`).join("")}</div>
+    <div class="sjd-frow"><span class="k">Policyholder</span><span class="v link" id="sjdPh">Mike's Lighting Company</span></div>
+    <div class="sjd-frow"><span class="k">LOB</span><span class="v link" data-toast="Flagship policy is open">Flagship</span></div>
+    <div class="sjd-frow"><span class="k">Due</span><span class="v">${s.due === "Prior to Bind" ? "Prior to Bind" : "Prior to Bind"}</span></div>
+    <div class="sjd-frow"><span class="k">Priority</span><span class="v">Mandatory</span></div>
+    <div class="sjd-frow"><span class="k">Assignee</span><span class="v">Agata Kowalska</span></div>
+    <div class="sjd-sec">
+      <div class="sjd-lbl">ESCALATION</div>
+      <div class="esc-step"><span class="esc-dot done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="t">First Follow-up</div><div class="s">Bind + 10 days</div></div></div>
+      <div class="esc-step"><span class="esc-dot open"></span><div><div class="t">Second Follow-up</div><div class="s">Bind + 20 days</div></div></div>
+      <div class="esc-step red"><span class="esc-dot red"></span><div><div class="t">Notice of Cancellation</div><div class="s">Bind + 30 days</div>
+        <button class="esc-noc-btn" id="sjdNoc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Prepare Notice of Cancellation</button></div></div>
+    </div>
+    <div class="sjd-sec">
+      <div class="sjd-sec-h"><span class="sjd-lbl" style="margin:0">FOLLOW-UPS</span><span class="a" id="sjdLogFu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Log follow-up</span></div>
+      <div class="fu-composer"><textarea id="sjdFuText" placeholder="Add follow-up details here"></textarea>
+        <div class="btns"><button class="btn btn-outline btn-sm" id="sjdFuClear">Clear</button><button class="btn btn-primary btn-sm" id="sjdFuSave">Save</button></div></div>
+      <div id="sjdFuList">${s.followups.map(f => `<div class="fu-item"><div class="t">${f.t}</div><div class="m">${f.by} · ${f.at}</div></div>`).join("")}</div>
+    </div>
+    <div class="sjd-sec">
+      <div class="sjd-sec-h"><span class="sjd-lbl" style="margin:0">DOCUMENTS</span><span class="a" data-toast="File picker would open here"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-8.5 8.5a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></svg>Attach</span></div>
+      <div id="sjdDocs">${s.docs.map(d => `<div class="sjdoc"><span class="pdf">PDF</span><span class="n">${d}</span><span class="kb" data-toast="Document actions: preview · download · remove"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg></span></div>`).join("")}</div>
+      <select class="f-input" id="sjdDocSel" style="margin-top:2px"><option value="">Select a document</option><option>Inspection Report.pdf</option><option>COI - Subcontractors.pdf</option><option>Signed SOV.pdf</option></select>
+    </div>
+    <div class="sjd-sec">
+      <div class="sjd-lbl">HISTORY</div>
+      <div id="sjdHist">${s.hist.map(h => `<div class="sjh-item"><span class="d"></span><div><div class="t">${h.t}</div><div class="s">${h.at}</div></div></div>`).join("")}</div>
+    </div>`;
+  /* per-render bindings */
+  spBody.querySelectorAll("[data-sjst]").forEach(c => c.addEventListener("click", () => {
+    s.status = c.dataset.sjst;
+    s.hist.unshift({t:`Status changed to ${s.status} by Matt Brooks`, at: now()});
+    renderSubjs();
+    openSubjPanel(s.id);
+    if (sjIsDone(s)) showToast(`${s.id} moved to Completed`);
+  }));
+  const ph = spBody.querySelector("#sjdPh");
+  if (ph) ph.addEventListener("click", () => openPanel("policyholder", true));
+  spBody.querySelector("#sjdNoc").addEventListener("click", () => {
+    s.hist.unshift({t:"Notice of Cancellation prepared by Matt Brooks", at: now()});
+    openSubjPanel(s.id);
+    showToast("Notice of Cancellation draft created");
+  });
+  spBody.querySelector("#sjdLogFu").addEventListener("click", () => spBody.querySelector("#sjdFuText").focus());
+  spBody.querySelector("#sjdFuClear").addEventListener("click", () => spBody.querySelector("#sjdFuText").value = "");
+  spBody.querySelector("#sjdFuSave").addEventListener("click", () => {
+    const v = spBody.querySelector("#sjdFuText").value.trim();
+    if (!v) { showToast("Add follow-up details first"); return; }
+    s.followups.unshift({t: v, by:"Agata Kowalska", at: now().replace("Today · ", "Jul 8, 2026 · ")});
+    s.hist.unshift({t:"Follow-up logged by Agata Kowalska", at: now()});
+    openSubjPanel(s.id);
+    showToast("Follow-up logged");
+  });
+  spBody.querySelector("#sjdDocSel").addEventListener("change", e => {
+    if (!e.target.value) return;
+    s.docs.push(e.target.value);
+    s.hist.unshift({t:"Document added by Matt Brooks", at: now()});
+    openSubjPanel(s.id);
+    showToast("Document attached");
+  });
+}
+renderSubjs();
 
 /* ---------- Init ---------- */
 updateAllChips();
